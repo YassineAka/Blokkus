@@ -43,6 +43,11 @@ public class Deck {
         }
     }
 
+    public int getNbShape() {
+        return nbShape;
+    }
+    
+
     @Override
     public String toString() {
         return "{" + shapes + '}';

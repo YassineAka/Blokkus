@@ -9,14 +9,12 @@ package g49382.blokus.model;
  *
  * @author PaRaDoxe1070
  */
-public class Player {
-    private Deck stock;
-    private int nbShape;
-
-    public Player() {
-        this.stock = new Deck();
-        this.nbShape = stock.getNbShape();
-    }
+public class Game {
+    private boolean isOver;
+    private Player currenPlayer;
+    private GamePlate plate;
+    private Shape shapeChosen;
+    
     
     
 }
