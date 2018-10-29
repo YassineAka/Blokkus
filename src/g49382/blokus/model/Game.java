@@ -11,9 +11,11 @@ package g49382.blokus.model;
  */
 public class Game {
     private boolean isOver;
-    private Player currenPlayer;
+    private Player currentPlayer;
     private GamePlate plate;
     private Shape shapeChosen;
+    
+    
     
     
     

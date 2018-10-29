@@ -22,4 +22,7 @@ public class GamePlate {
         this.height = heigth;
         this. width = width;
     }
+    public void addShape(Shape shape){
+        this.shapePlaced.add(shape);
+    }
 }
