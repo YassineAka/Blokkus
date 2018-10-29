@@ -11,6 +11,7 @@ public class Bloc {
     private int y;
     private final int height;
     private final int width;
+   
 
     public Bloc() {
         this.x = 0;
@@ -33,6 +34,7 @@ public class Bloc {
     public int getY() {
         return y;
     }
+    
 
     @Override
     public String toString() {

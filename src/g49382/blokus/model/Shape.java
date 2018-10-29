@@ -5,6 +5,7 @@
  */
 package g49382.blokus.model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class Shape {
     private List<Bloc> shape;
     private int nbBloc;
+    private int numShape;
 
     public Shape(Bloc ...blocs) {
         this.shape = new LinkedList<Bloc>();
@@ -27,6 +29,12 @@ public class Shape {
     public List<Bloc> getShape() {
         return shape;
     }
+
+    public void setNumShape(int numShape) {
+        this.numShape = numShape;
+    }
+    
+    
     
 //    public static void main(String[] args) {
 //        Shape carré = new Shape(new Bloc(),new Bloc(2,2),new Bloc(3,0));
@@ -34,5 +42,14 @@ public class Shape {
 //            System.out.println(bloc);
 //        }
 //    }
+
+    @Override
+    public String toString() {
+        return "Shape n°"+ numShape+"{" + shape + '}';
+    }
+
+    
+    
+    
     
 }
