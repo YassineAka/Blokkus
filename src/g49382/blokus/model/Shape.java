@@ -33,6 +33,14 @@ public class Shape {
     public void setNumShape(int numShape) {
         this.numShape = numShape;
     }
+    public Shape isInside(Point p){
+        for (Bloc b : shape) {
+            if (b.isInside(p)) {
+                return this;
+            }
+        }
+        return null;
+    }
     
     
     

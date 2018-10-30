@@ -6,7 +6,6 @@
 package g49382.blokus.model;
 import g49382.blokus.model.*;
 
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,25 +17,28 @@ import static org.junit.Assert.*;
  *
  * @author PaRaDoxe1070
  */
-public class ShapeTest {
+public class BlocTest {
+    
+    
+    
 
     /**
-     * Test of isInside method, of class Shape.
+     * Test of isInside method, of class Bloc.
      */
     @Test
     public void testIsInsideTrue() {
-        Point p = new Point(1,0);
-        Shape instance = new Shape(new Bloc(),new Bloc(1,0),new Bloc(2,0));
-        Shape expResult = instance;
-        Shape result = instance.isInside(p);
+        Point p = new Point(5,0);
+        Bloc instance = new Bloc(5,0);
+        boolean expResult = true;
+        boolean result = instance.isInside(p);
         assertEquals(expResult, result);
     }
     @Test
     public void testIsInsideFalse() {
-        Point p = new Point(1,1);
-        Shape instance = new Shape(new Bloc(),new Bloc(1,0),new Bloc(2,0));
-        Shape expResult = null;
-        Shape result = instance.isInside(p);
+        Point p = new Point(2,4);
+        Bloc instance = new Bloc(14,20);
+        boolean expResult = false;
+        boolean result = instance.isInside(p);
         assertEquals(expResult, result);
     }
     

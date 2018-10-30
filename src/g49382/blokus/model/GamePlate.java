@@ -22,7 +22,17 @@ public class GamePlate {
         this.height = heigth;
         this. width = width;
     }
+
+    public List<Shape> getShapePlaced() {
+        return shapePlaced;
+    }
     public void addShape(Shape shape){
         this.shapePlaced.add(shape);
+    }
+    public Shape getShapeAt(Point p){
+        for (Shape shape : shapePlaced) {
+            return shape.isInside(p);
+        }
+        return null;
     }
 }

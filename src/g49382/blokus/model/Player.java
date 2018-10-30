@@ -12,10 +12,25 @@ package g49382.blokus.model;
 public class Player {
     private Deck stock;
     private int nbShape;
+    private char color;
 
-    public Player() {
+    public Player(Color color) {
         this.stock = new Deck();
         this.nbShape = stock.getNbShape();
+    }
+
+    public Deck getStock() {
+        return stock;
+    }
+
+    public int getNbShape() {
+        return nbShape;
+    }
+    
+    public Shape place(int numShape){
+        Shape shapechosen = this.stock.getShapes().get(numShape-1);
+        this.stock.getShapes().set(numShape-1, null);
+        return shapechosen;
     }
     
     

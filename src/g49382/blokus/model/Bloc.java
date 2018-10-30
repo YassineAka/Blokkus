@@ -40,6 +40,12 @@ public class Bloc {
     public String toString() {
         return "("+x+";"+y+")";
     }
+    public boolean isInside(Point p){
+        Bloc upperRight = new Bloc(this.getX()+ width, this.getY());
+        Bloc downLeft = new Bloc(this.getX(), this.getY()+ height);
+        return (this.getX() <= p.getX()) && (this.getY() <= p.getY()) && (downLeft.getY() > p.getY()) && (upperRight.getX() > p.getX());
+    }
+
     
     
     

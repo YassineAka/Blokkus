@@ -1,7 +1,6 @@
 package g49382.blokus.model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ public class Deck {
     private int nbShape;
 
     public Deck() {
-        this.shapes = new LinkedList<Shape>();
+        this.shapes = new ArrayList<Shape>();
         Shape [] allShapes ={new Shape(new Bloc()),//1
                              new Shape(new Bloc(),new Bloc(0,1)),//2
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2)),//3
@@ -43,6 +42,10 @@ public class Deck {
         }
     }
 
+    public List<Shape> getShapes() {
+        return shapes;
+    }
+    
     public int getNbShape() {
         return nbShape;
     }
@@ -53,11 +56,5 @@ public class Deck {
         return "{" + shapes + '}';
     }
 
-    
-    
-    public static void main(String[] args) {
-        Deck myStock = new Deck();
-        System.out.println(myStock);
-    }
     
 }
