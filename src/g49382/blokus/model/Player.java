@@ -12,11 +12,18 @@ package g49382.blokus.model;
 public class Player {
     private Deck stock;
     private int nbShape;
-    private char color;
+    private Color color;
 
     public Player(Color color) {
         this.stock = new Deck();
         this.nbShape = stock.getNbShape();
+        this.color = color;
+    }
+
+    public Player() {
+        this.stock = new Deck();
+        this.nbShape = stock.getNbShape();
+        this.color = null;
     }
 
     public Deck getStock() {
@@ -31,6 +38,11 @@ public class Player {
         Shape shapechosen = this.stock.getShapes().get(numShape-1);
         this.stock.getShapes().set(numShape-1, null);
         return shapechosen;
+    }
+
+    @Override
+    public String toString() {
+        return "Player " +color+ ": "+ nbShape +" shapes "+ "Stock: " +'{' +this.stock+ '}';
     }
     
     
