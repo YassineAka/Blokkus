@@ -17,6 +17,8 @@ public class Shape {
     private List<Bloc> shape;
     private int nbBloc;
     private int numShape;
+    private char charColor;
+    private Color color = null;
 
     public Shape(Bloc ...blocs) {
         this.shape = new LinkedList<Bloc>();
@@ -25,6 +27,23 @@ public class Shape {
         }
         this.nbBloc = this.shape.size();
     }
+    public Color getColor() {
+        return this.color ;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public char getCharColor() {
+        return charColor;
+    }
+
+    public void setCharColor(char charColor) {
+        this.charColor = charColor;
+    }
+    
+    
 
     public List<Bloc> getShape() {
         return shape;

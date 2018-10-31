@@ -23,6 +23,15 @@ public class GamePlate {
         this. width = width;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+    
+
     public List<Shape> getShapePlaced() {
         return shapePlaced;
     }

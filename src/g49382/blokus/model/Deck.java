@@ -18,12 +18,12 @@ public class Deck {
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2)),//3
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(1,1)),//4
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(0,3)),//5
-                             new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(-1,2)),//6
+                             new Shape(new Bloc(0,2),new Bloc(1,0),new Bloc(1,1),new Bloc(1,2)),//6
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(1,1),new Bloc(0,2)),//7
                              new Shape(new Bloc(),new Bloc(1,0),new Bloc(0,1),new Bloc(1,1)),//8
                              new Shape(new Bloc(),new Bloc(1,0),new Bloc(1,1),new Bloc(2,1)),//9
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(0,3),new Bloc(0,4)),//10
-                             new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(0,3),new Bloc(-1,3)),//11
+                             new Shape(new Bloc(0,3),new Bloc(1,0),new Bloc(1,1),new Bloc(1,2),new Bloc(1,3)),//11
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(-1,2),new Bloc(-1,3)),//12
                              new Shape(new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(-1,1),new Bloc(-1,2)),//13
                              new Shape(new Bloc(-1,0),new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(-1,2)),//14

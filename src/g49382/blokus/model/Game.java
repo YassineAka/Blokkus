@@ -27,7 +27,7 @@ public class Game {
         this.players.add(new Player(Color.YELLOW));
         this.isOver = false;
         this.currentPlayer = this.players.get(0);
-        this.plate = new GamePlate(100, 100);
+        this.plate = new GamePlate(70, 60);
         this.shapeChosen = null;
     }
 
@@ -63,12 +63,51 @@ public class Game {
         return this.currentPlayer.getStock().getShapes().isEmpty();
     }
     
-//    public static void main(String[] args) {
-//        Game game= new Game();
-//        for (Player player : game.players) {
-//            System.out.println(player+"/n");
-//        }
-//    }
+    public void play(int numShape){
+        this.plate.addShape(this.currentPlayer.place(numShape));
+        
+        this.nextPlayer();
+        
+        
+    }
+    public void nextPlayer(){
+        switch (this.currentPlayer.getColor()) {
+            case BLUE: this.currentPlayer = this.players.get(1);
+                break;
+            case RED: this.currentPlayer = this.players.get(2);
+                break;
+            case GREEN: this.currentPlayer = this.players.get(3);
+                break;
+            default:
+                this.currentPlayer = this.players.get(0);
+        }
+    }
+    public StringBuffer paint() {
+        StringBuffer aff = new StringBuffer();
+        for(int i=0 ; i<this.plate.getHeight(); i++){
+            for(int j=0 ; j<=this.plate.getWidth(); j++){
+                Point p = new Point(j, i);
+                                                                                    // APA : Shape s = drawing.getShape(p)
+                if(this.plate.getShapeAt(p)!= null){
+                    aff.append(this.plate.getShapeAt(p).getColor().getC()+" ");
+                }else{
+                    aff.append(". ");
+                }
+            }
+            aff.append("\n");
+        }
+        return aff ;
+    }
+    
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.play(12);
+        System.out.println(game.getPlate().getShapePlaced());
+        System.out.println(game.paint());
+    }
+    
+
+
     
     
      

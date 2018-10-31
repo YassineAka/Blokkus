@@ -18,6 +18,9 @@ public class Player {
         this.stock = new Deck();
         this.nbShape = stock.getNbShape();
         this.color = color;
+        for (Shape s : this.stock.getShapes()) {
+            s.setColor(color);
+        }
     }
 
     public Player() {
@@ -25,6 +28,11 @@ public class Player {
         this.nbShape = stock.getNbShape();
         this.color = null;
     }
+
+    public Color getColor() {
+        return color;
+    }
+    
 
     public Deck getStock() {
         return stock;
