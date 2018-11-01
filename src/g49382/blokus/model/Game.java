@@ -18,6 +18,7 @@ public class Game {
     private Player currentPlayer;
     private GamePlate plate;
     private Shape shapeChosen;
+    private Point position;
 
     public Game() {
         this.players = new ArrayList<Player>(4);
@@ -63,8 +64,14 @@ public class Game {
         return this.currentPlayer.getStock().getShapes().isEmpty();
     }
     
-    public void play(int numShape){
-        this.plate.addShape(this.currentPlayer.place(numShape));
+    public void play(int numShape, double x,double y){
+        this.position = new Point(x, y);
+        shapeChosen = this.currentPlayer.place(numShape);
+        for (Bloc b : shapeChosen.getShape()) {
+            b.getP().setX(b.getP().getX() + x );
+            b.getP().setY(b.getP().getY() + y );
+        }
+        this.plate.addShape(shapeChosen);
         
         this.nextPlayer();
         
@@ -87,9 +94,9 @@ public class Game {
         for(int i=0 ; i<this.plate.getHeight(); i++){
             for(int j=0 ; j<=this.plate.getWidth(); j++){
                 Point p = new Point(j, i);
-                                                                                    // APA : Shape s = drawing.getShape(p)
                 if(this.plate.getShapeAt(p)!= null){
-                    aff.append(this.plate.getShapeAt(p).getColor().getC()+" ");
+                    Shape s = this.plate.getShapeAt(p);
+                    aff.append(s.getColor().getC()+" ");
                 }else{
                     aff.append(". ");
                 }
@@ -98,11 +105,32 @@ public class Game {
         }
         return aff ;
     }
+//    public String paint() {
+//        String aff= ""; 
+//        for(int i=1 ; i<this.plate.getHeight(); i++){
+//            for(int j=1 ; j<=this.plate.getWidth(); j++){
+//                Point p = new Point(j, i);
+//                if(this.plate.getShapeAt(p)!=null){
+//                    aff = aff+ this.plate.getShapeAt(p).getColor().getC()+" ";
+//                }else{
+//                    aff = aff +". ";
+//                }
+//            }
+//            aff= aff+ "\n";
+//        }
+//        return aff ;
+//    }
+
     
     public static void main(String[] args) {
         Game game = new Game();
-        game.play(12);
-        System.out.println(game.getPlate().getShapePlaced());
+        game.play(18,4,3);
+        game.play(20,8,3);
+        game.play(2,16,5);
+        game.play(13,18,15);
+        game.play(6,7,7);
+        game.play(9,5,19);
+        System.out.println(game.getPlate().getShapePlaced() +"AND" );
         System.out.println(game.paint());
     }
     

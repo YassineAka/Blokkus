@@ -40,7 +40,9 @@ public class GamePlate {
     }
     public Shape getShapeAt(Point p){
         for (Shape shape : shapePlaced) {
-            return shape.isInside(p);
+            if (shape.isInside(p)){
+                return shape;
+            }
         }
         return null;
     }

@@ -24,13 +24,14 @@ public class Bloc {
         this.width = 1;
     }
 
-    public double getX() {
-        return p.getX();
+    public Point getP() {
+        return p;
     }
 
-    public double getY() {
-        return p.getY();
+    public void setP(Point p) {
+        this.p = p;
     }
+    
     
 
     @Override
@@ -38,9 +39,7 @@ public class Bloc {
         return "("+p.getX()+";"+p.getY()+")";
     }
     public boolean isInside(Point p){
-        Bloc upperRight = new Bloc(this.getX()+ width, this.getY());
-        Bloc downLeft = new Bloc(this.getX(), this.getY()+ height);
-        return (p.getX() == this.getX()) && (p.getY() == this.getY());
+        return (p.getX() == this.getP().getX()) && (p.getY() == this.getP().getY());
         //(this.getX() <= p.getX()) && (this.getY() <= p.getY()) && (downLeft.getY() > p.getY()) && (upperRight.getX() > p.getX());
     }
 

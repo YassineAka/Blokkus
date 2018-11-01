@@ -52,13 +52,13 @@ public class Shape {
     public void setNumShape(int numShape) {
         this.numShape = numShape;
     }
-    public Shape isInside(Point p){
+    public Boolean isInside(Point p){
         for (Bloc b : shape) {
             if (b.isInside(p)) {
-                return this;
+                return true;
             }
         }
-        return null;
+        return false;
     }
     
     
@@ -72,7 +72,7 @@ public class Shape {
 
     @Override
     public String toString() {
-        return "Shape n°"+ numShape+"{" + shape + '}';
+        return "Shape n°"+ numShape+"{" + shape + '(' +this.color+ ") }";
     }
 
     
