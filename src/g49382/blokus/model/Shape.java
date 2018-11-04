@@ -72,7 +72,7 @@ public class Shape {
 
     @Override
     public String toString() {
-        return "Shape n°"+ numShape+"{" + shape + '(' +this.color+ ") }";
+        return "Shape n°"+ numShape+"{" + shape ;
     }
 
     

@@ -45,6 +45,7 @@ public class Player {
     public Shape place(int numShape){
         Shape shapechosen = this.stock.getShapes().get(numShape-1);
         this.stock.getShapes().set(numShape-1, null);
+        this.nbShape--;
         return shapechosen;
     }
 

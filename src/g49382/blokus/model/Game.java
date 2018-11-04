@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package g49382.blokus.model;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Game {
     private GamePlate plate;
     private Shape shapeChosen;
     private Point position;
-
+    
     public Game() {
         this.players = new ArrayList<Player>(4);
         this.players.add(new Player(Color.BLUE));
@@ -28,22 +28,22 @@ public class Game {
         this.players.add(new Player(Color.YELLOW));
         this.isOver = false;
         this.currentPlayer = this.players.get(0);
-        this.plate = new GamePlate(70, 60);
+        this.plate = new GamePlate(40, 40);
         this.shapeChosen = null;
     }
-
-    public boolean isIsOver() {
+    
+    public boolean isOver() {
         return isOver;
     }
-
+    
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
+    
     public GamePlate getPlate() {
         return plate;
     }
-
+    
     public Shape getShapeChosen() {
         return shapeChosen;
     }
@@ -53,23 +53,27 @@ public class Game {
     }
     
     public Player getWinner(){
-        if (isGameOver()) {
-            this.isOver = true;
-            return this.currentPlayer;
+        for (Player player : players) {
+            if (player.getNbShape() == 0) {
+                this.isOver=true;
+                return player;
+            }
         }
         return null;
-    }
-    
-    public boolean isGameOver(){
-        return this.currentPlayer.getStock().getShapes().isEmpty();
+        
     }
     
     public void play(int numShape, double x,double y){
         this.position = new Point(x, y);
         shapeChosen = this.currentPlayer.place(numShape);
-        for (Bloc b : shapeChosen.getShape()) {
-            b.getP().setX(b.getP().getX() + x );
-            b.getP().setY(b.getP().getY() + y );
+        try {
+            for (Bloc b : shapeChosen.getShape()) {
+                b.getP().setX(b.getP().getX() + x );
+                b.getP().setY(b.getP().getY() + y );
+            }
+        } 
+        catch (NullPointerException e) {
+            System.err.println("You already placed this shape ! ");
         }
         this.plate.addShape(shapeChosen);
         
@@ -80,11 +84,11 @@ public class Game {
     public void nextPlayer(){
         switch (this.currentPlayer.getColor()) {
             case BLUE: this.currentPlayer = this.players.get(1);
-                break;
+            break;
             case RED: this.currentPlayer = this.players.get(2);
-                break;
+            break;
             case GREEN: this.currentPlayer = this.players.get(3);
-                break;
+            break;
             default:
                 this.currentPlayer = this.players.get(0);
         }
@@ -106,7 +110,7 @@ public class Game {
         return aff ;
     }
 //    public String paint() {
-//        String aff= ""; 
+//        String aff= "";
 //        for(int i=1 ; i<this.plate.getHeight(); i++){
 //            for(int j=1 ; j<=this.plate.getWidth(); j++){
 //                Point p = new Point(j, i);
@@ -120,7 +124,7 @@ public class Game {
 //        }
 //        return aff ;
 //    }
-
+    
     
     public static void main(String[] args) {
         Game game = new Game();
@@ -134,11 +138,11 @@ public class Game {
         System.out.println(game.paint());
     }
     
-
-
     
     
-     
+    
+    
+    
     
     
 }

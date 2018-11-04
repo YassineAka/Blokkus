@@ -27,16 +27,16 @@ public class ShapeTest {
     public void testIsInsideTrue() {
         Point p = new Point(1,0);
         Shape instance = new Shape(new Bloc(),new Bloc(1,0),new Bloc(2,0));
-        Shape expResult = instance;
-        Shape result = instance.isInside(p);
+        boolean expResult = true;
+        boolean result = instance.isInside(p);
         assertEquals(expResult, result);
     }
     @Test
     public void testIsInsideFalse() {
         Point p = new Point(1,1);
         Shape instance = new Shape(new Bloc(),new Bloc(1,0),new Bloc(2,0));
-        Shape expResult = null;
-        Shape result = instance.isInside(p);
+        boolean expResult = false;
+        boolean result = instance.isInside(p);
         assertEquals(expResult, result);
     }
     
