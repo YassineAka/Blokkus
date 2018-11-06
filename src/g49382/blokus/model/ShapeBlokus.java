@@ -13,25 +13,25 @@ import java.util.List;
  *
  * @author PaRaDoxe1070
  */
-public class Shape {
+public class ShapeBlokus {
     private List<Bloc> shape;
     private int nbBloc;
     private int numShape;
     private char charColor;
-    private Color color = null;
+    private Paint color = null;
 
-    public Shape(Bloc ...blocs) {
+    public ShapeBlokus(Bloc ...blocs) {
         this.shape = new LinkedList<Bloc>();
         for (Bloc bloc : blocs) {
             this.shape.add(bloc);
         }
         this.nbBloc = this.shape.size();
     }
-    public Color getColor() {
+    public Paint getColor() {
         return this.color ;
     }
 
-    public void setColor(Color color) {
+    public void setColor(Paint color) {
         this.color = color;
     }
 
@@ -64,7 +64,7 @@ public class Shape {
     
     
 //    public static void main(String[] args) {
-//        Shape carré = new Shape(new Bloc(),new Bloc(2,2),new Bloc(3,0));
+//        ShapeBlokus carré = new ShapeBlokus(new Bloc(),new Bloc(2,2),new Bloc(3,0));
 //        for (Bloc bloc : carré.shape) {
 //            System.out.println(bloc);
 //        }

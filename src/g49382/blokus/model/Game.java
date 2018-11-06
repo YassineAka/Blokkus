@@ -17,18 +17,18 @@ public class Game {
     private boolean isOver;
     private Player currentPlayer;
     private GamePlate plate;
-    private Shape shapeChosen;
+    private ShapeBlokus shapeChosen;
     private Point position;
     
     public Game() {
         this.players = new ArrayList<Player>(4);
-        this.players.add(new Player(Color.BLUE));
-        this.players.add(new Player(Color.RED));
-        this.players.add(new Player(Color.GREEN));
-        this.players.add(new Player(Color.YELLOW));
+        this.players.add(new Player(Paint.BLUE));
+        this.players.add(new Player(Paint.RED));
+        this.players.add(new Player(Paint.GREEN));
+        this.players.add(new Player(Paint.YELLOW));
         this.isOver = false;
         this.currentPlayer = this.players.get(0);
-        this.plate = new GamePlate(40, 40);
+        this.plate = new GamePlate(20, 20);
         this.shapeChosen = null;
     }
     
@@ -44,7 +44,7 @@ public class Game {
         return plate;
     }
     
-    public Shape getShapeChosen() {
+    public ShapeBlokus getShapeChosen() {
         return shapeChosen;
     }
     
@@ -99,7 +99,7 @@ public class Game {
             for(int j=0 ; j<=this.plate.getWidth(); j++){
                 Point p = new Point(j, i);
                 if(this.plate.getShapeAt(p)!= null){
-                    Shape s = this.plate.getShapeAt(p);
+                    ShapeBlokus s = this.plate.getShapeAt(p);
                     aff.append(s.getColor().getC()+" ");
                 }else{
                     aff.append(". ");
@@ -109,40 +109,6 @@ public class Game {
         }
         return aff ;
     }
-//    public String paint() {
-//        String aff= "";
-//        for(int i=1 ; i<this.plate.getHeight(); i++){
-//            for(int j=1 ; j<=this.plate.getWidth(); j++){
-//                Point p = new Point(j, i);
-//                if(this.plate.getShapeAt(p)!=null){
-//                    aff = aff+ this.plate.getShapeAt(p).getColor().getC()+" ";
-//                }else{
-//                    aff = aff +". ";
-//                }
-//            }
-//            aff= aff+ "\n";
-//        }
-//        return aff ;
-//    }
-    
-    
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.play(18,4,3);
-        game.play(20,8,3);
-        game.play(2,16,5);
-        game.play(13,18,15);
-        game.play(6,7,7);
-        game.play(9,5,19);
-        System.out.println(game.getPlate().getShapePlaced() +"AND" );
-        System.out.println(game.paint());
-    }
-    
-    
-    
-    
-    
-    
     
     
 }

@@ -22,12 +22,11 @@ public class ViewConsole {
     }
     public void start(){
         while (!this.game.isOver()){
-            System.out.println("What do you wanna do ?(show/print/play)");
+            System.out.println("What do you wanna do ?(show/stock/play)");
             String requete = sc.nextLine();
             String[] tabS = requete.split(" ", 4);
             try {
                 if (tabS[0].equalsIgnoreCase("show")) {
-                    System.out.println("fiiiiirst");
                     System.out.println(this.game.paint());
                 } else if (tabS[0].equalsIgnoreCase("stock")) {
                     System.out.println("Stock of player "+this.game.getCurrentPlayer().getColor()+" :"+ this.game.getCurrentPlayer().getStock());

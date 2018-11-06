@@ -13,7 +13,7 @@ import java.util.List;
  * @author PaRaDoxe1070
  */
 public class GamePlate {
-    private List<Shape> shapePlaced;
+    private List<ShapeBlokus> shapePlaced;
     private int height;
     private int width;
     
@@ -32,14 +32,14 @@ public class GamePlate {
     }
     
 
-    public List<Shape> getShapePlaced() {
+    public List<ShapeBlokus> getShapePlaced() {
         return shapePlaced;
     }
-    public void addShape(Shape shape){
+    public void addShape(ShapeBlokus shape){
         this.shapePlaced.add(shape);
     }
-    public Shape getShapeAt(Point p){
-        for (Shape shape : shapePlaced) {
+    public ShapeBlokus getShapeAt(Point p){
+        for (ShapeBlokus shape : shapePlaced) {
             if (shape.isInside(p)){
                 return shape;
             }

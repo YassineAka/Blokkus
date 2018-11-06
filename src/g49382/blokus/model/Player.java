@@ -12,13 +12,13 @@ package g49382.blokus.model;
 public class Player {
     private Deck stock;
     private int nbShape;
-    private Color color;
+    private Paint color;
 
-    public Player(Color color) {
+    public Player(Paint color) {
         this.stock = new Deck();
         this.nbShape = stock.getNbShape();
         this.color = color;
-        for (Shape s : this.stock.getShapes()) {
+        for (ShapeBlokus s : this.stock.getShapes()) {
             s.setColor(color);
         }
     }
@@ -29,7 +29,7 @@ public class Player {
         this.color = null;
     }
 
-    public Color getColor() {
+    public Paint getColor() {
         return color;
     }
     
@@ -42,8 +42,8 @@ public class Player {
         return nbShape;
     }
     
-    public Shape place(int numShape){
-        Shape shapechosen = this.stock.getShapes().get(numShape-1);
+    public ShapeBlokus place(int numShape){
+        ShapeBlokus shapechosen = this.stock.getShapes().get(numShape-1);
         this.stock.getShapes().set(numShape-1, null);
         this.nbShape--;
         return shapechosen;

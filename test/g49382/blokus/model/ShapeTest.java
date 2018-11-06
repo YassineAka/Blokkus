@@ -21,12 +21,12 @@ import static org.junit.Assert.*;
 public class ShapeTest {
 
     /**
-     * Test of isInside method, of class Shape.
+     * Test of isInside method, of class ShapeBlokus.
      */
     @Test
     public void testIsInsideTrue() {
         Point p = new Point(1,0);
-        Shape instance = new Shape(new Bloc(),new Bloc(1,0),new Bloc(2,0));
+        ShapeBlokus instance = new ShapeBlokus(new Bloc(),new Bloc(1,0),new Bloc(2,0));
         boolean expResult = true;
         boolean result = instance.isInside(p);
         assertEquals(expResult, result);
@@ -34,7 +34,7 @@ public class ShapeTest {
     @Test
     public void testIsInsideFalse() {
         Point p = new Point(1,1);
-        Shape instance = new Shape(new Bloc(),new Bloc(1,0),new Bloc(2,0));
+        ShapeBlokus instance = new ShapeBlokus(new Bloc(),new Bloc(1,0),new Bloc(2,0));
         boolean expResult = false;
         boolean result = instance.isInside(p);
         assertEquals(expResult, result);

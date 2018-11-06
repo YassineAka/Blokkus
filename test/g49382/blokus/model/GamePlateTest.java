@@ -23,7 +23,7 @@ public class GamePlateTest {
 //    @Test
 //    public void testAddShape() {
 //        System.out.println("addShape");
-//        Shape shape = null;
+//        ShapeBlokus shape = null;
 //        GamePlate instance = null;
 //        instance.addShape(shape);
 //        // TODO review the generated test code and remove the default call to fail.
@@ -39,8 +39,8 @@ public class GamePlateTest {
         Deck stock = new Deck();
         plate.getShapePlaced().add(stock.getShapes().get(4));//(0,0)/(0,1)/(0,2)
         Point p = new Point(0, 1);
-        Shape expResult = stock.getShapes().get(4);
-        Shape result = plate.getShapeAt(p);
+        ShapeBlokus expResult = stock.getShapes().get(4);
+        ShapeBlokus result = plate.getShapeAt(p);
         assertEquals(expResult, result);
     }
     /**
@@ -52,8 +52,8 @@ public class GamePlateTest {
         Deck stock = new Deck();
         plate.getShapePlaced().add(stock.getShapes().get(4));//(0,0)/(0,1)/(0,2)
         Point p = new Point(14, 1);
-        Shape expResult = null;
-        Shape result = plate.getShapeAt(p);
+        ShapeBlokus expResult = null;
+        ShapeBlokus result = plate.getShapeAt(p);
         assertEquals(expResult, result);
     }
     
