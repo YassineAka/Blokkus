@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package g49382.blokus.view;
 
 import g49382.blokus.model.Paint;
@@ -26,25 +26,27 @@ import javafx.scene.shape.*;
  */
 public class ShapeView {
     private GridPane grid;
-
+    
     public ShapeView(ShapeBlokus shape) {
         this.grid = new GridPane();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 Point p = new Point(j, i);
-                Rectangle square = new Rectangle(10, 10);
-                if (shape.isInside(p)){
+                Rectangle square = new Rectangle(7.5, 7.5);
+                if (shape != null && shape.isInside(p)){
                     square.setFill(Color.valueOf(shape.getColor().getAscii()));
+                    square.setStroke(Color.BLACK);
                     
                 }
                 else{
-                    square.setFill(Color.WHITE);
-                }
+                        square.setFill(Color.WHITE);
+                        square.setStroke(Color.BLACK);
+                        }
                 grid.add(square, i, j);
             }
         }
     }
-
+    
     public GridPane getGrid() {
         return grid;
     }

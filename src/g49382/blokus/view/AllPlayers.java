@@ -15,14 +15,13 @@ import g49382.blokus.model.Player;
  */
 public class AllPlayers {
     private VBox allPlayers;
-    private Game game;
 
-    public AllPlayers() {
-        this.game = new Game();
+    public AllPlayers(Game game) {
         allPlayers = new VBox();
-        for (Player player : this.game.getPlayers()) {
-             allPlayers.getChildren().add((new PlayerView(player)).getPlayerView());
+        for (Player player : game.getPlayers()) {
+             allPlayers.getChildren().add((new PlayerView(player)).getPlayerFullView());
         }
+        this.allPlayers.setSpacing(4);
     }
 
     public VBox getAllPlayers() {

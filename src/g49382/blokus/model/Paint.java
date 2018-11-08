@@ -10,14 +10,17 @@ package g49382.blokus.model;
  * @author PaRaDoxe1070
  */
 public enum Paint {
-    BLUE('b',"#0000FF"),RED('r',"#FF0000"),GREEN('g',"#00FF00"),YELLOW('y',"#FFFF00");
+    BLUE(1,'b',"#0000FF"),RED(2,'r',"#FF0000"),GREEN(3,'g',"#00FF00"),YELLOW(4,'y',"#FFFF00");
     
+    private int numPlayer;
     private final char c;
     private String ascii;
+    
 
-    private Paint(char c, String ascii) {
+    private Paint(int numPlayer, char c, String ascii) {
         this.c = c;
         this.ascii = ascii;
+        this.numPlayer = numPlayer;
     }
 
     public char getC() {
@@ -27,6 +30,11 @@ public enum Paint {
     public String getAscii() {
         return ascii;
     }
+
+    public int getNumPlayer() {
+        return numPlayer;
+    }
+    
     
     
     
