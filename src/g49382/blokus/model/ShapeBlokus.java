@@ -8,6 +8,7 @@ package g49382.blokus.model;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -72,6 +73,11 @@ public class ShapeBlokus {
         return shape;
     }
 
+    public void setShape(List<Bloc> shape) {
+        this.shape = shape;
+    }
+    
+
     /**
      * Set a new number of Shape.
      * @param numShape
@@ -98,7 +104,7 @@ public class ShapeBlokus {
     @Override
     public String toString() {
         return "Shape n°"+ numShape+"{" + shape ;
-    }
+    } 
 
     
     

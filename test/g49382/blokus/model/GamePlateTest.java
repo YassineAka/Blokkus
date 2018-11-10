@@ -19,16 +19,19 @@ import static org.junit.Assert.*;
  */
 public class GamePlateTest {
     
+    /**
+     * Test of addShape method, of class GamePlate.
+     */
+    @Test
+    public void testAddShape() {
+        ShapeBlokus shape = new ShapeBlokus(new Bloc(),new Bloc(), new Bloc());
+        GamePlate instance = new GamePlate(0, 0);
+        for (int i = 0; i < 3; i++) {
+            instance.addShape(shape);
+        }
+        assertEquals(instance.getShapePlaced().size(), 3);
+    }
     
-//    @Test
-//    public void testAddShape() {
-//        System.out.println("addShape");
-//        ShapeBlokus shape = null;
-//        GamePlate instance = null;
-//        instance.addShape(shape);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
 
     /**
      * Test of getShapeAt method, of class GamePlate.

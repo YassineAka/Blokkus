@@ -35,7 +35,7 @@ public class ShapeView {
         this.grid = new GridPane();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                Point p = new Point(j, i);
+                Point p = new Point(i, j);
                 Rectangle square = new Rectangle(7.5, 7.5);
                 if (shape != null && shape.isInside(p)){
                     square.setFill(Color.valueOf(shape.getColor().getAscii()));

@@ -18,6 +18,48 @@ import static org.junit.Assert.*;
  * @author PaRaDoxe1070
  */
 public class GameTest {
+
+    
+
+    /**
+     * Test of getWinner method, of class Game.
+     */
+    @Test
+    public void testGetWinner() {
+        Game game = new Game();
+        Player expResult = game.getPlayers().get(0);
+        expResult.setNbShape(0);
+        Player result = game.getWinner();
+        assertEquals(expResult, result);
+    }
+
+
+    /**
+     * Test of nextPlayer method, of class Game.
+     */
+    @Test
+    public void testNextPlayer() {
+        Game game = new Game();
+        Player expResult = game.getPlayers().get(3);
+        game.nextPlayer();
+        for (int i = 0; i < 3; i++) { 
+            game.nextPlayer();
+        }
+        assertEquals(expResult, game.getPlayers().get(3));
+        
+    }
+
+//    /**
+//     * Test of paint method, of class Game.
+//     */
+//    @Test
+//    public void testPaint() {
+//        System.out.println("paint");
+//        Game instance = new Game();
+//        StringBuffer expResult = null;
+//        StringBuffer result = instance.paint();
+//        assertEquals(expResult, result);
+//    }
 //    /**
 //     * Test of paint method, of class Game.
 //     */

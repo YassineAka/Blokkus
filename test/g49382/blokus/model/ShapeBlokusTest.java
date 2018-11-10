@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  *
  * @author PaRaDoxe1070
  */
-public class ShapeTest {
+public class ShapeBlokusTest {
 
     /**
      * Test of isInside method, of class ShapeBlokus.

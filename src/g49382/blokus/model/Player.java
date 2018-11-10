@@ -54,11 +54,19 @@ public class Player {
 
     /**
      * Get the number of shapes in the stock of this player.
-     * @return
+     * @return number of shapes remaining
      */
     public int getNbShape() {
         return nbShape;
     }
+    
+    /**
+     * Set the number of shapes in the stock of this player to number received in parameter.
+     */
+    public void setNbShape(int nbShape) {
+        this.nbShape = nbShape;
+    }
+    
     
     /**
      * She choose the shape to place in the plate.
@@ -74,7 +82,20 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player " +color+ ": "+ nbShape +" shapes "+ "Stock: " +'{' +this.stock+ '}';
+        return "Player " +color+ ": "+ nbShape +" shapes "+ "Stock: " +'{' + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    public boolean equals(Player player) {
+        if (this.color != player.color) {
+            return false;
+        }
+        return true;
     }
     
     
