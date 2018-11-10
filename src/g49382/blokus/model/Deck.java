@@ -11,6 +11,9 @@ public class Deck {
     private List<ShapeBlokus> shapes;
     private int nbShape;
 
+    /**
+     * Create a new deck.
+     */
     public Deck() {
         this.shapes = new ArrayList<ShapeBlokus>();
         ShapeBlokus [] allShapes ={new ShapeBlokus(new Bloc()),//1
@@ -42,10 +45,18 @@ public class Deck {
         }
     }
 
+    /**
+     * Get the shapes attribute of this object.s
+     * @return this.shapes
+     */
     public List<ShapeBlokus> getShapes() {
         return shapes;
     }
     
+    /**
+     * Get the number of shapes attribute of this object.
+     * @return this.nbShape
+     */
     public int getNbShape() {
         return nbShape;
     }

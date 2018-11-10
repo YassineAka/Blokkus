@@ -27,6 +27,10 @@ import javafx.scene.shape.*;
 public class ShapeView {
     private GridPane grid;
     
+    /**
+     * Create a Gridpane who represents a shape.
+     * @param shape
+     */
     public ShapeView(ShapeBlokus shape) {
         this.grid = new GridPane();
         for (int i = 0; i < 5; i++) {
@@ -47,6 +51,10 @@ public class ShapeView {
         }
     }
     
+    /**
+     * Get a gridPane 5x5 for a shape.
+     * @return a gridPane.
+     */
     public GridPane getGrid() {
         return grid;
     }

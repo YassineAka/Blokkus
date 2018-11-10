@@ -10,7 +10,26 @@ package g49382.blokus.model;
  * @author PaRaDoxe1070
  */
 public enum Paint {
-    BLUE(1,'b',"#0000FF"),RED(2,'r',"#FF0000"),GREEN(3,'g',"#00FF00"),YELLOW(4,'y',"#FFFF00");
+
+    /**
+     * Color blue , she is the color of the first player.
+     */
+    BLUE(1,'b',"#0000FF"),
+
+    /**
+     * Color blue , she is the color of the second player.
+     */
+    RED(2,'r',"#FF0000"),
+
+    /**
+     * Color blue , she is the color of the third player.
+     */
+    GREEN(3,'g',"#00FF00"),
+
+    /**
+     * Color blue , she is the color of the fourth player.
+     */
+    YELLOW(4,'y',"#FFFF00");
     
     private int numPlayer;
     private final char c;
@@ -23,14 +42,26 @@ public enum Paint {
         this.numPlayer = numPlayer;
     }
 
+    /**
+     * Get the character of the color.
+     * @return a character of a color.
+     */
     public char getC() {
         return c;
     }
 
+    /**
+     * Get the code ascii of this color.
+     * @return a string who contains a ascii code.
+     */
     public String getAscii() {
         return ascii;
     }
 
+    /** 
+     * Get the number of the player.
+     * @return
+     */
     public int getNumPlayer() {
         return numPlayer;
     }

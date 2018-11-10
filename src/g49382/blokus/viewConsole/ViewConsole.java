@@ -16,10 +16,17 @@ public class ViewConsole {
     private Game game ;
     private Scanner sc ;
     
+    /**
+     *
+     */
     public ViewConsole() {
         game = new Game();
         sc = new Scanner(System.in);
     }
+
+    /**
+     * She out print the view a of the game.
+     */
     public void start(){
         while (!this.game.isOver()){
             System.out.println("What do you wanna do ?(show/stock/play)");
@@ -41,13 +48,5 @@ public class ViewConsole {
             
         }
     }
-//    public void play(){
-//        System.out.println("Which shape do yo wanna place ?");
-//        int numShape = sc.nextInt();
-//        System.out.println("At which x ?:");
-//        double x = sc.nextDouble();
-//        System.out.println("At which y ?:");
-//        double y = sc.nextDouble();
-//        game.play(numShape,x,y);
-//    }
+
 }

@@ -9,13 +9,14 @@ import javafx.scene.layout.VBox;
 import g49382.blokus.model.Game;
 import g49382.blokus.model.Player;
 
-/**
- *
- * @author PaRaDoxe1070
- */
+
 public class AllPlayers {
     private VBox allPlayers;
 
+    /**
+     * Create a Vbox with the informations of all players.
+     * @param game
+     */
     public AllPlayers(Game game) {
         allPlayers = new VBox();
         for (Player player : game.getPlayers()) {
@@ -24,6 +25,10 @@ public class AllPlayers {
         this.allPlayers.setSpacing(4);
     }
 
+    /**
+     * Get the vbox
+     * @return a vbox
+     */
     public VBox getAllPlayers() {
         return allPlayers;
     }

@@ -20,6 +20,10 @@ public class PlayerView {
     private GridPane playerView;
     private VBox playerFullView;
     
+    /**
+     * Create a Vbox and a gridPane with the informations of one players.
+     * @param player
+     */
     public PlayerView(Player player){
         int indice = 0;
         this.playerView = new GridPane();
@@ -42,6 +46,10 @@ public class PlayerView {
         
     }
 
+    /**
+     * Get the VBox with informations.
+     * @return
+     */
     public VBox getPlayerFullView() {
         return this.playerFullView;
     }

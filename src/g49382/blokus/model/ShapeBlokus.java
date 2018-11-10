@@ -20,6 +20,10 @@ public class ShapeBlokus {
     private char charColor;
     private Paint color = null;
 
+    /**
+     *
+     * @param blocs
+     */
     public ShapeBlokus(Bloc ...blocs) {
         this.shape = new LinkedList<Bloc>();
         for (Bloc bloc : blocs) {
@@ -27,31 +31,60 @@ public class ShapeBlokus {
         }
         this.nbBloc = this.shape.size();
     }
+
+    /**
+     * Get the color of this player.
+     * @return a Color.
+     */
     public Paint getColor() {
         return this.color ;
     }
 
+    /**
+     * Set a new color to this shape.
+     * @return a Color.
+     */
     public void setColor(Paint color) {
         this.color = color;
     }
 
+    /**
+     * Get the charColor of this player.
+     * @return a charColor.
+     */
     public char getCharColor() {
         return charColor;
     }
 
+    /**
+     * Set a new charColor to this shape.
+     * @return a charColor.
+     */
     public void setCharColor(char charColor) {
         this.charColor = charColor;
     }
     
-    
-
+    /**
+     * Return a List with all the block of this shape.
+     * @return a List o blocks
+     */
     public List<Bloc> getShape() {
         return shape;
     }
 
+    /**
+     * Set a new number of Shape.
+     * @param numShape
+     */
     public void setNumShape(int numShape) {
         this.numShape = numShape;
     }
+
+    /**
+     * Check if the point received in parameter is part of this shape.
+     * @param p
+     * @return
+     */
     public Boolean isInside(Point p){
         for (Bloc b : shape) {
             if (b.isInside(p)) {
@@ -60,15 +93,7 @@ public class ShapeBlokus {
         }
         return false;
     }
-    
-    
-    
-//    public static void main(String[] args) {
-//        ShapeBlokus carré = new ShapeBlokus(new Bloc(),new Bloc(2,2),new Bloc(3,0));
-//        for (Bloc bloc : carré.shape) {
-//            System.out.println(bloc);
-//        }
-//    }
+
 
     @Override
     public String toString() {

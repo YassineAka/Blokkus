@@ -19,6 +19,10 @@ import javafx.scene.shape.Rectangle;
 public class GamePlateView {
     private GridPane grid;
 
+    /**
+     * Create a gridPane who represents the plate of the game.
+     * @param game
+     */
     public GamePlateView(Game game) {
         this.grid = new GridPane();
         for (int i = 0; i < game.getPlate().getHeight(); i++) {
@@ -40,6 +44,10 @@ public class GamePlateView {
         }
     }
 
+    /**
+     * Get the gridPane.
+     * @return a gridPane
+     */
     public GridPane getGrid() {
         return grid;
     }
