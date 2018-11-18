@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Blokus&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">g49382.blokus.model</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package g49382.blokus.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author PaRaDoxe1070
+ */
+public class Game {
+    private List&lt;Player&gt; players;
+    private boolean isOver;
+    private Player currentPlayer;
+    private GamePlate plate;
+    private ShapeBlokus shapeChosen;
+    private Point position;
+    
+    /**
+     * Create a new game.
+     */
+<span class="fc" id="L26">    public Game() {</span>
+<span class="fc" id="L27">        this.players = new ArrayList&lt;Player&gt;(4);</span>
+<span class="fc" id="L28">        this.players.add(new Player(Paint.BLUE));</span>
+<span class="fc" id="L29">        this.players.add(new Player(Paint.RED));</span>
+<span class="fc" id="L30">        this.players.add(new Player(Paint.GREEN));</span>
+<span class="fc" id="L31">        this.players.add(new Player(Paint.YELLOW));</span>
+<span class="fc" id="L32">        this.isOver = false;</span>
+<span class="fc" id="L33">        this.currentPlayer = this.players.get(0);</span>
+<span class="fc" id="L34">        this.plate = new GamePlate(20, 20);</span>
+<span class="fc" id="L35">        this.shapeChosen = null;</span>
+<span class="fc" id="L36">    }</span>
+    
+    /**
+     * Check if the attribute isOver is true that mean the game is over.
+     * @return true if the game is over
+     */
+    public boolean isOver() {
+<span class="nc" id="L43">        return isOver;</span>
+    }
+    
+    /**
+     * Get the current player of this game.
+     * @return
+     */
+    public Player getCurrentPlayer() {
+<span class="nc" id="L51">        return currentPlayer;</span>
+    }
+    
+    /**
+     * Get the palte of this game.
+     * @return the plate
+     */
+    public GamePlate getPlate() {
+<span class="nc" id="L59">        return plate;</span>
+    }
+    
+    /**
+     * Get the shape chosen of this game.
+     * @return shapeChosen
+     */
+    public ShapeBlokus getShapeChosen() {
+<span class="nc" id="L67">        return shapeChosen;</span>
+    }
+    
+    /**
+     *Get the players of this game.
+     * @return players
+     */
+    public List&lt;Player&gt; getPlayers() {
+<span class="fc" id="L75">        return players;</span>
+    }
+    
+    /**
+     * Get the winner of the game. She check if it exist a player with no more shapes.
+     * @return Player
+     */
+    public Player getWinner(){
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">        for (Player player : players) {</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">            if (player.getNbShape() == 0) {</span>
+<span class="fc" id="L85">                this.isOver=true;</span>
+<span class="fc" id="L86">                return player;</span>
+            }
+<span class="nc" id="L88">        }</span>
+<span class="nc" id="L89">        return null;</span>
+        
+    }
+    
+    /**
+     * She place the shape in the plate at the numShape position at the position received in paramater.
+     * @param position of the shape chosen in the deck.
+     * @param x.
+     * @param y.
+     */
+    public void play(int numShape, double x,double y){
+<span class="nc" id="L100">        this.position = new Point(x, y);</span>
+<span class="nc" id="L101">        shapeChosen = this.currentPlayer.place(numShape);</span>
+        try {
+            // APA : Gère le cas si la pièce est nulle, plutor qu'une excepetion
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            for (Bloc b : shapeChosen.getShape()) {</span>
+<span class="nc" id="L105">                b.getP().setX(b.getP().getX() + x );</span>
+<span class="nc" id="L106">                b.getP().setY(b.getP().getY() + y );</span>
+<span class="nc" id="L107">            }</span>
+        } 
+<span class="nc" id="L109">        catch (NullPointerException e) {</span>
+<span class="nc" id="L110">            System.err.println(&quot;You already placed this shape ! &quot;);</span>
+<span class="nc" id="L111">        }</span>
+<span class="nc" id="L112">        this.plate.addShape(shapeChosen);</span>
+        
+<span class="nc" id="L114">        this.nextPlayer();</span>
+        
+        
+<span class="nc" id="L117">    }</span>
+
+    /**
+     * She passes a turn.
+     */
+    public void nextPlayer(){
+        // APA : Un numéro est un modulo aurait été plus élégant
+<span class="pc bfc" id="L124" title="All 4 branches covered.">        switch (this.currentPlayer.getColor()) {</span>
+<span class="fc" id="L125">            case BLUE: this.currentPlayer = this.players.get(1);</span>
+<span class="fc" id="L126">            break;</span>
+<span class="fc" id="L127">            case RED: this.currentPlayer = this.players.get(2);</span>
+<span class="fc" id="L128">            break;</span>
+<span class="fc" id="L129">            case GREEN: this.currentPlayer = this.players.get(3);</span>
+<span class="fc" id="L130">            break;</span>
+            default:
+<span class="fc" id="L132">                this.currentPlayer = this.players.get(0);</span>
+        }
+<span class="fc" id="L134">    }</span>
+
+    /**
+     * She paint the plate of the game.
+     * @return a StringBuffer with the shapes placed on the plate.
+     */
+    public StringBuffer paint() {
+<span class="nc" id="L141">        StringBuffer aff = new StringBuffer();</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        for(int i=0 ; i&lt;this.plate.getHeight(); i++){</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            for(int j=0 ; j&lt;=this.plate.getWidth(); j++){</span>
+<span class="nc" id="L144">                Point p = new Point(j, i);</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">                if(this.plate.getShapeAt(p)!= null){</span>
+<span class="nc" id="L146">                    ShapeBlokus s = this.plate.getShapeAt(p);</span>
+<span class="nc" id="L147">                    aff.append(s.getColor().getC()+&quot; &quot;);</span>
+<span class="nc" id="L148">                }else{</span>
+<span class="nc" id="L149">                    aff.append(&quot;. &quot;);</span>
+                }
+            }
+<span class="nc" id="L152">            aff.append(&quot;\n&quot;);</span>
+        }
+<span class="nc" id="L154">        return aff ;</span>
+    }
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

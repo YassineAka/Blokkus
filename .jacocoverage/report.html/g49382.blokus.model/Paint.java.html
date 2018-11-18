@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Paint.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Blokus&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">g49382.blokus.model</a> &gt; <span class="el_source">Paint.java</span></div><h1>Paint.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package g49382.blokus.model;
+
+/**
+ *
+ * @author PaRaDoxe1070
+ */
+<span class="pc" id="L12">public enum Paint {</span>
+
+    /**
+     * Color blue , she is the color of the first player.
+     */
+<span class="fc" id="L17">    BLUE(1,'b',&quot;#0000FF&quot;),</span>
+
+    /**
+     * Color blue , she is the color of the second player.
+     */
+<span class="fc" id="L22">    RED(2,'r',&quot;#FF0000&quot;),</span>
+
+    /**
+     * Color blue , she is the color of the third player.
+     */
+<span class="fc" id="L27">    GREEN(3,'g',&quot;#00FF00&quot;),</span>
+
+    /**
+     * Color blue , she is the color of the fourth player.
+     */
+<span class="fc" id="L32">    YELLOW(4,'y',&quot;#FFFF00&quot;);</span>
+    
+    private int numPlayer;
+    private final char c;
+    private String ascii;
+    
+
+<span class="fc" id="L39">    private Paint(int numPlayer, char c, String ascii) {</span>
+<span class="fc" id="L40">        this.c = c;</span>
+<span class="fc" id="L41">        this.ascii = ascii;</span>
+<span class="fc" id="L42">        this.numPlayer = numPlayer;</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * Get the character of the color.
+     * @return a character of a color.
+     */
+    public char getC() {
+<span class="nc" id="L50">        return c;</span>
+    }
+
+    /**
+     * Get the code ascii of this color.
+     * @return a string who contains a ascii code.
+     */
+    public String getAscii() {
+<span class="nc" id="L58">        return ascii;</span>
+    }
+
+    /** 
+     * Get the number of the player.
+     * @return
+     */
+    public int getNumPlayer() {
+<span class="nc" id="L66">        return numPlayer;</span>
+    }
+    
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

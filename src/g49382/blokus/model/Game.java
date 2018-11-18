@@ -100,6 +100,7 @@ public class Game {
         this.position = new Point(x, y);
         shapeChosen = this.currentPlayer.place(numShape);
         try {
+            // APA : Gère le cas si la pièce est nulle, plutor qu'une excepetion
             for (Bloc b : shapeChosen.getShape()) {
                 b.getP().setX(b.getP().getX() + x );
                 b.getP().setY(b.getP().getY() + y );
@@ -119,6 +120,7 @@ public class Game {
      * She passes a turn.
      */
     public void nextPlayer(){
+        // APA : Un numéro est un modulo aurait été plus élégant
         switch (this.currentPlayer.getColor()) {
             case BLUE: this.currentPlayer = this.players.get(1);
             break;

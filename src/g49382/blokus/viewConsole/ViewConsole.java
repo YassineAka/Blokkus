@@ -27,7 +27,7 @@ public class ViewConsole {
     /**
      * She out print the view a of the game.
      */
-    public void start(){
+    public void starxt(){
         while (!this.game.isOver()){
             System.out.println("What do you wanna do ?(show/stock/play)");
             String requete = sc.nextLine();
@@ -42,6 +42,7 @@ public class ViewConsole {
                     System.out.println("you played");
                 }
             }catch(NumberFormatException e){
+                // APA : Hein ? Comment est ce que tu différencie un int d'un double ?
                 System.err.println("Warning ! the number of the shape is an int mais the positons are double !");
             }
             

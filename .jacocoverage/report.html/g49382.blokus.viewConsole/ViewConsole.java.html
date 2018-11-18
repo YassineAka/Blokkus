@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewConsole.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Blokus&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">g49382.blokus.viewConsole</a> &gt; <span class="el_source">ViewConsole.java</span></div><h1>ViewConsole.java</h1><pre class="source lang-java linenums">/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package g49382.blokus.viewConsole;
+
+import g49382.blokus.model.*;
+import java.util.Scanner;
+
+/**
+ *
+ * @author PaRaDoxe1070
+ */
+public class ViewConsole {
+    private Game game ;
+    private Scanner sc ;
+    
+    /**
+     *
+     */
+<span class="nc" id="L22">    public ViewConsole() {</span>
+<span class="nc" id="L23">        game = new Game();</span>
+<span class="nc" id="L24">        sc = new Scanner(System.in);</span>
+<span class="nc" id="L25">    }</span>
+
+    /**
+     * She out print the view a of the game.
+     */
+    public void starxt(){
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        while (!this.game.isOver()){</span>
+<span class="nc" id="L32">            System.out.println(&quot;What do you wanna do ?(show/stock/play)&quot;);</span>
+<span class="nc" id="L33">            String requete = sc.nextLine();</span>
+<span class="nc" id="L34">            String[] tabS = requete.split(&quot; &quot;, 4);</span>
+            try {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                if (tabS[0].equalsIgnoreCase(&quot;show&quot;)) {</span>
+<span class="nc" id="L37">                    System.out.println(this.game.paint());</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                } else if (tabS[0].equalsIgnoreCase(&quot;stock&quot;)) {</span>
+<span class="nc" id="L39">                    System.out.println(&quot;Stock of player &quot;+this.game.getCurrentPlayer().getColor()+&quot; :&quot;+ this.game.getCurrentPlayer().getStock());</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                } else if(tabS[0].equalsIgnoreCase(&quot;play&quot;)) {</span>
+<span class="nc" id="L41">                    this.game.play(Integer.parseInt(tabS[1]), Double.parseDouble(tabS[2]),Double.parseDouble(tabS[3]));</span>
+<span class="nc" id="L42">                    System.out.println(&quot;you played&quot;);</span>
+                }
+<span class="nc" id="L44">            }catch(NumberFormatException e){</span>
+                // APA : Hein ? Comment est ce que tu différencie un int d'un double ?
+<span class="nc" id="L46">                System.err.println(&quot;Warning ! the number of the shape is an int mais the positons are double !&quot;);</span>
+<span class="nc" id="L47">            }</span>
+            
+            
+<span class="nc" id="L50">        }</span>
+<span class="nc" id="L51">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PlayerView.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Blokus&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">g49382.blokus.view</a> &gt; <span class="el_source">PlayerView.java</span></div><h1>PlayerView.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package g49382.blokus.view;
+
+import g49382.blokus.model.Player;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+/**
+ *
+ * @author PaRaDoxe1070
+ */
+public class PlayerView {
+    private GridPane playerView;
+    private VBox playerFullView;
+    
+    /**
+     * Create a Vbox and a gridPane with the informations of one players.
+     * @param player
+     */
+<span class="nc" id="L27">    public PlayerView(Player player){</span>
+<span class="nc" id="L28">        int indice = 0;</span>
+<span class="nc" id="L29">        this.playerView = new GridPane();</span>
+<span class="nc" id="L30">        this.playerFullView = new VBox();</span>
+<span class="nc" id="L31">        this.playerView.setHgap(2);</span>
+<span class="nc" id="L32">        this.playerView.setVgap(2);</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        for (int i = 0; i &lt; 3; i++) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            for (int j = 0; j &lt; 7; j++) {</span>
+<span class="nc" id="L35">                ShapeView shapeView = new ShapeView(player.getStock().getShapes().get(indice));</span>
+<span class="nc" id="L36">                playerView.add(shapeView.getGrid(), j, i);</span>
+                
+<span class="nc" id="L38">                indice++;</span>
+            }
+        }
+<span class="nc" id="L41">        Text infoPlayer = new Text(&quot;Player &quot;+player.getColor().getNumPlayer()+&quot;        Score             14                 Ok&quot;);</span>
+<span class="nc" id="L42">        this.playerFullView.getChildren().add(infoPlayer);</span>
+<span class="nc" id="L43">        this.playerFullView.getChildren().add(this.playerView);</span>
+<span class="nc" id="L44">        this.playerFullView.setStyle(&quot;-fx-border-color: black&quot;);</span>
+        
+        
+<span class="nc" id="L47">    }</span>
+
+    /**
+     * Get the VBox with informations.
+     * @return
+     */
+    public VBox getPlayerFullView() {
+<span class="nc" id="L54">        return this.playerFullView;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
