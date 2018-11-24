@@ -39,7 +39,7 @@ public class GamePlateView {
                     square.setFill(Color.WHITE);
                     square.setStroke(Color.BLACK);
                 }
-                grid.add(square, i, j);
+                grid.add(square, j, i);
             }
         }
     }

@@ -27,7 +27,7 @@ public class ViewConsole {
     /**
      * She out print the view a of the game.
      */
-    public void starxt(){
+    public void start(){
         while (!this.game.isOver()){
             System.out.println("What do you wanna do ?(show/stock/play)");
             String requete = sc.nextLine();
@@ -38,12 +38,12 @@ public class ViewConsole {
                 } else if (tabS[0].equalsIgnoreCase("stock")) {
                     System.out.println("Stock of player "+this.game.getCurrentPlayer().getColor()+" :"+ this.game.getCurrentPlayer().getStock());
                 } else if(tabS[0].equalsIgnoreCase("play")) {
-                    this.game.play(Integer.parseInt(tabS[1]), Double.parseDouble(tabS[2]),Double.parseDouble(tabS[3]));
+                    this.game.play(Integer.parseInt(tabS[1]), Integer.parseInt(tabS[2]),Integer.parseInt(tabS[3]));
                     System.out.println("you played");
                 }
-            }catch(NumberFormatException e){
+            }catch(NumberFormatException e ){
                 // APA : Hein ? Comment est ce que tu différencie un int d'un double ?
-                System.err.println("Warning ! the number of the shape is an int mais the positons are double !");
+                System.err.println("Warning ! the number of the request is badly written !");
             }
             
             

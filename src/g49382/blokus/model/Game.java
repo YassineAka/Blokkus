@@ -18,7 +18,6 @@ public class Game {
     private Player currentPlayer;
     private GamePlate plate;
     private ShapeBlokus shapeChosen;
-    private Point position;
     
     /**
      * Create a new game.
@@ -97,21 +96,18 @@ public class Game {
      * @param y.
      */
     public void play(int numShape, double x,double y){
-        this.position = new Point(x, y);
         shapeChosen = this.currentPlayer.place(numShape);
-        try {
-            // APA : Gère le cas si la pièce est nulle, plutor qu'une excepetion
+        if (shapeChosen != null ) {
             for (Bloc b : shapeChosen.getShape()) {
-                b.getP().setX(b.getP().getX() + x );
-                b.getP().setY(b.getP().getY() + y );
+            b.getP().setX(b.getP().getX() + x );
+            b.getP().setY(b.getP().getY() + y );
             }
-        } 
-        catch (NullPointerException e) {
-            System.err.println("You already placed this shape ! ");
+            this.plate.addShape(shapeChosen);
+            this.nextPlayer();
+        }else{
+            System.out.println(" You already placed this shape");
         }
-        this.plate.addShape(shapeChosen);
         
-        this.nextPlayer();
         
         
     }

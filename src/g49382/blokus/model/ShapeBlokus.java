@@ -16,7 +16,6 @@ import java.util.Objects;
  */
 public class ShapeBlokus {
     private List<Bloc> shape;
-    private int nbBloc;
     private int numShape;
     private char charColor;
     private Paint color = null;
@@ -30,7 +29,6 @@ public class ShapeBlokus {
         for (Bloc bloc : blocs) {
             this.shape.add(bloc);
         }
-        this.nbBloc = this.shape.size();
     }
 
     /**

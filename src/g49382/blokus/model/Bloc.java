@@ -6,16 +6,11 @@ package g49382.blokus.model;
  */
 public class Bloc {
     private Point p;
-    private final int height;
-    private final int width;
-   
     /**
      * Builds a new Bloc.
      */
     public Bloc() {
         this.p = new Point(0, 0);
-        this.height = 1;
-        this.width = 1;
     }
     
     /**
@@ -25,8 +20,6 @@ public class Bloc {
      */
     public Bloc(double x, double y) {
         this.p = new Point(x, y);
-        this.height = 1;
-        this.width = 1;
     }
 
     /**

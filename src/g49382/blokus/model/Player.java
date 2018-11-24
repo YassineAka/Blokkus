@@ -91,12 +91,17 @@ public class Player {
         return hash;
     }
 
-    public boolean equals(Player player) {
-        if (this.color != player.color) {
-            return false;
+    public boolean equals(Object obj) {
+        if (obj instanceof Player  && ((Player)obj).color == this.color) {
+            return true;
         }
-        return true;
-    }
+        return false;
+        }
+        
+        
+        
+        
+    
     
     
 }
