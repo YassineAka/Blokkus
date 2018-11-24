@@ -8,6 +8,9 @@ package g49382.blokus.view;
 import g49382.blokus.model.Game;
 import g49382.blokus.model.Point;
 import g49382.blokus.model.ShapeBlokus;
+import java.util.Observer;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,7 +19,7 @@ import javafx.scene.shape.Rectangle;
  *
  * @author PaRaDoxe1070
  */
-public class GamePlateView {
+public class GamePlateView implements Observer{
     private GridPane grid;
 
     /**
@@ -50,6 +53,11 @@ public class GamePlateView {
      */
     public GridPane getGrid() {
         return grid;
+    }
+
+    @Override
+    public void update(java.util.Observable o, Object arg) {
+        
     }
     
     

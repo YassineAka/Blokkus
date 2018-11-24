@@ -7,12 +7,13 @@ package g49382.blokus.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import javafx.beans.Observable;
 
 /**
  *
  * @author PaRaDoxe1070
  */
-public class GamePlate {
+public class GamePlate extends java.util.Observable{
     private List<ShapeBlokus> shapePlaced;
     private int height;
     private int width;
@@ -23,6 +24,7 @@ public class GamePlate {
      * @param width
      */
     public GamePlate(int heigth, int width){
+        super();
         shapePlaced = new LinkedList<>();
         this.height = heigth;
         this. width = width;
