@@ -18,11 +18,10 @@ public class AllPlayers {
      * @param game
      */
     public AllPlayers(Game game) {
-        allPlayers = new VBox();
+        allPlayers = new VBox(4);
         for (Player player : game.getPlayers()) {
              allPlayers.getChildren().add((new PlayerView(player)).getPlayerFullView());
         }
-        this.allPlayers.setSpacing(4);
     }
 
     /**

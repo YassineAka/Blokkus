@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ShapeBlokus.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Blokus&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">g49382.blokus.model</a> &gt; <span class="el_source">ShapeBlokus.java</span></div><h1>ShapeBlokus.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ShapeBlokus.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Blokus&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">g49382.blokus.model</a> &gt; <span class="el_source">ShapeBlokus.java</span></div><h1>ShapeBlokus.java</h1><pre class="source lang-java linenums">/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,29 +16,27 @@ import java.util.Objects;
  */
 public class ShapeBlokus {
     private List&lt;Bloc&gt; shape;
-    private int nbBloc;
     private int numShape;
     private char charColor;
-<span class="fc" id="L22">    private Paint color = null;</span>
+<span class="fc" id="L21">    private Paint color = null;</span>
 
     /**
      *
      * @param blocs
      */
-<span class="fc" id="L28">    public ShapeBlokus(Bloc ...blocs) {</span>
-<span class="fc" id="L29">        this.shape = new LinkedList&lt;Bloc&gt;();</span>
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (Bloc bloc : blocs) {</span>
-<span class="fc" id="L31">            this.shape.add(bloc);</span>
+<span class="fc" id="L27">    public ShapeBlokus(Bloc ...blocs) {</span>
+<span class="fc" id="L28">        this.shape = new LinkedList&lt;Bloc&gt;();</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (Bloc bloc : blocs) {</span>
+<span class="fc" id="L30">            this.shape.add(bloc);</span>
         }
-<span class="fc" id="L33">        this.nbBloc = this.shape.size();</span>
-<span class="fc" id="L34">    }</span>
+<span class="fc" id="L32">    }</span>
 
     /**
      * Get the color of this player.
      * @return a Color.
      */
     public Paint getColor() {
-<span class="nc" id="L41">        return this.color ;</span>
+<span class="nc" id="L39">        return this.color ;</span>
     }
 
     /**
@@ -46,15 +44,15 @@ public class ShapeBlokus {
      * @return a Color.
      */
     public void setColor(Paint color) {
-<span class="fc" id="L49">        this.color = color;</span>
-<span class="fc" id="L50">    }</span>
+<span class="fc" id="L47">        this.color = color;</span>
+<span class="fc" id="L48">    }</span>
 
     /**
      * Get the charColor of this player.
      * @return a charColor.
      */
     public char getCharColor() {
-<span class="nc" id="L57">        return charColor;</span>
+<span class="nc" id="L55">        return charColor;</span>
     }
 
     /**
@@ -62,20 +60,20 @@ public class ShapeBlokus {
      * @return a charColor.
      */
     public void setCharColor(char charColor) {
-<span class="nc" id="L65">        this.charColor = charColor;</span>
-<span class="nc" id="L66">    }</span>
+<span class="nc" id="L63">        this.charColor = charColor;</span>
+<span class="nc" id="L64">    }</span>
     
     /**
      * Return a List with all the block of this shape.
      * @return a List o blocks
      */
     public List&lt;Bloc&gt; getShape() {
-<span class="nc" id="L73">        return shape;</span>
+<span class="nc" id="L71">        return shape;</span>
     }
 
     public void setShape(List&lt;Bloc&gt; shape) {
-<span class="nc" id="L77">        this.shape = shape;</span>
-<span class="nc" id="L78">    }</span>
+<span class="nc" id="L75">        this.shape = shape;</span>
+<span class="nc" id="L76">    }</span>
     
 
     /**
@@ -83,8 +81,8 @@ public class ShapeBlokus {
      * @param numShape
      */
     public void setNumShape(int numShape) {
-<span class="fc" id="L86">        this.numShape = numShape;</span>
-<span class="fc" id="L87">    }</span>
+<span class="fc" id="L84">        this.numShape = numShape;</span>
+<span class="fc" id="L85">    }</span>
 
     /**
      * Check if the point received in parameter is part of this shape.
@@ -92,18 +90,18 @@ public class ShapeBlokus {
      * @return
      */
     public Boolean isInside(Point p){
-<span class="fc bfc" id="L95" title="All 2 branches covered.">        for (Bloc b : shape) {</span>
-<span class="fc bfc" id="L96" title="All 2 branches covered.">            if (b.isInside(p)) {</span>
-<span class="fc" id="L97">                return true;</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (Bloc b : shape) {</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">            if (b.isInside(p)) {</span>
+<span class="fc" id="L95">                return true;</span>
             }
-<span class="fc" id="L99">        }</span>
-<span class="fc" id="L100">        return false;</span>
+<span class="fc" id="L97">        }</span>
+<span class="fc" id="L98">        return false;</span>
     }
 
 
     @Override
     public String toString() {
-<span class="nc" id="L106">        return &quot;Shape n°&quot;+ numShape+&quot;{&quot; + shape ;</span>
+<span class="nc" id="L104">        return &quot;Shape n°&quot;+ numShape+&quot;{&quot; + shape ;</span>
     } 
 
     

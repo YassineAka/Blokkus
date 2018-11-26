@@ -24,8 +24,9 @@ import javafx.scene.shape.*;
  *
  * @author PaRaDoxe1070
  */
-public class ShapeView {
+public class ShapeView extends GridPane{
     private GridPane grid;
+    private ShapeBlokus shapeChosen;
     
     /**
      * Create a Gridpane who represents a shape.
@@ -33,6 +34,7 @@ public class ShapeView {
      */
     public ShapeView(ShapeBlokus shape) {
         this.grid = new GridPane();
+        this.shapeChosen = shape;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 Point p = new Point(i, j);
@@ -50,7 +52,10 @@ public class ShapeView {
             }
         }
     }
-    
+
+    public ShapeBlokus getShapeChosen() {
+        return shapeChosen;
+    }
     /**
      * Get a gridPane 5x5 for a shape.
      * @return a gridPane.

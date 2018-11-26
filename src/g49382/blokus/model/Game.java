@@ -7,12 +7,13 @@ package g49382.blokus.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  *
  * @author PaRaDoxe1070
  */
-public class Game {
+public class Game extends Observable{
     private List<Player> players;
     private boolean isOver;
     private Player currentPlayer;
@@ -22,7 +23,7 @@ public class Game {
     /**
      * Create a new game.
      */
-    public Game() {
+    public Game()  {
         this.players = new ArrayList<Player>(4);
         this.players.add(new Player(Paint.BLUE));
         this.players.add(new Player(Paint.RED));
@@ -65,6 +66,12 @@ public class Game {
     public ShapeBlokus getShapeChosen() {
         return shapeChosen;
     }
+
+    public void setShapeChosen(ShapeBlokus shapeChosen) {
+        this.shapeChosen = shapeChosen;
+        notifyObservers();
+    }
+    
     
     /**
      *Get the players of this game.
