@@ -6,6 +6,7 @@
 package g49382.blokus.handler;
 
 import g49382.blokus.model.Game;
+import g49382.blokus.model.ShapeBlokus;
 import g49382.blokus.view.ShapeView;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -14,20 +15,15 @@ import javafx.scene.input.MouseEvent;
  *
  * @author g49382
  */
-public class ShapeHandler implements EventHandler<MouseEvent>{
-    private Game game;
-    
-    public ShapeHandler(Game game) {
-    this.game = game;
-    }
+public class ClickHandler implements EventHandler<MouseEvent> {
+
     @Override
     public void handle(MouseEvent event) {
-        System.out.println("OUAI OUAi");
-        System.out.println(event.getEventType());
-        if ((event.getEventType() == MouseEvent.MOUSE_PRESSED) ) {
-            System.out.println(event.getSource());
+        System.out.println("EVENT APA");
+        if (event.getEventType() == event.MOUSE_PRESSED ) {
+           // event.getSource()
         }
-        
+
     }
-    
+
 }

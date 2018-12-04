@@ -5,7 +5,9 @@
  */
 package g49382.blokus.view;
 
+import g49382.blokus.handler.ClickHandler;
 import g49382.blokus.handler.ShapeHandler;
+import g49382.blokus.handler.SquareHandler;
 import g49382.blokus.model.Game;
 import g49382.blokus.model.Player;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +25,7 @@ public class PlayerView {
     private GridPane playerView;
     private VBox playerFullView;
     private ShapeHandler handler;
+    private ClickHandler handlerClick;
     private Game game;
     
     /**
@@ -32,6 +35,7 @@ public class PlayerView {
     public PlayerView(Player player){
         int indice = 0;
         this.handler = new ShapeHandler(game);
+        this.handlerClick = new ClickHandler();
         this.playerView = new GridPane();
         this.playerFullView = new VBox();
         this.playerView.setHgap(2);
@@ -39,6 +43,7 @@ public class PlayerView {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 7; j++) {
                 ShapeView shapeView = new ShapeView(player.getStock().getShapes().get(indice));
+                shapeView.addEventHandler(MouseEvent.MOUSE_PRESSED, handler);
                 shapeView.addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
                 playerView.add(shapeView.getGrid(), j, i);
                 

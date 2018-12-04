@@ -5,6 +5,8 @@
 */
 package g49382.blokus.view;
 
+import g49382.blokus.handler.ClickHandler;
+import g49382.blokus.handler.ShapeHandler;
 import g49382.blokus.model.Paint;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -17,7 +19,9 @@ import javafx.stage.Stage;
 import g49382.blokus.model.Game;
 import g49382.blokus.model.Point;
 import g49382.blokus.model.ShapeBlokus;
+import javafx.event.EventType;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 /**
@@ -42,7 +46,6 @@ public class ShapeView extends GridPane{
                 if (shape != null && shape.isInside(p)){
                     square.setFill(Color.valueOf(shape.getColor().getAscii()));
                     square.setStroke(Color.BLACK);
-                    
                 }
                 else{
                         square.setFill(Color.WHITE);
@@ -63,6 +66,8 @@ public class ShapeView extends GridPane{
     public GridPane getGrid() {
         return grid;
     }
+
+    
     
     
 }

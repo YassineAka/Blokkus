@@ -21,7 +21,9 @@ public class AllPlayers {
         allPlayers = new VBox(4);
         for (Player player : game.getPlayers()) {
              allPlayers.getChildren().add((new PlayerView(player)).getPlayerFullView());
+             
         }
+        
     }
 
     /**

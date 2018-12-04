@@ -57,6 +57,7 @@ public class GamePlateView implements Observer{
                 Rectangle square = new Rectangle(30, 30);
                 square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
                 square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
+                square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);
                 
                 if (game.getPlate().getShapeAt(p)!= null){
                     ShapeBlokus s = game.getPlate().getShapeAt(p);
