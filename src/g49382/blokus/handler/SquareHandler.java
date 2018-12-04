@@ -24,7 +24,8 @@ public class SquareHandler implements EventHandler<MouseEvent> {
             if (square.getFill() == Color.WHITE){
                 square.setFill(Color.GRAY);
             }
-        }else if (event.getEventType() == MouseEvent.MOUSE_EXITED ){ 
+        }
+        if (event.getEventType() == MouseEvent.MOUSE_EXITED && square.getFill() == Color.GRAY ){ 
             square.setFill(Color.WHITE);
         }
     }
