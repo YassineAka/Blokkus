@@ -5,23 +5,9 @@
 */
 package g49382.blokus.view;
 
-import g49382.blokus.handler.ClickHandler;
-import g49382.blokus.handler.ShapeHandler;
-import g49382.blokus.model.Paint;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import g49382.blokus.model.Game;
 import g49382.blokus.model.Point;
 import g49382.blokus.model.ShapeBlokus;
-import javafx.event.EventType;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 /**
@@ -29,7 +15,6 @@ import javafx.scene.shape.*;
  * @author PaRaDoxe1070
  */
 public class ShapeView extends GridPane{
-    private GridPane grid;
     private ShapeBlokus shapeChosen;
     
     /**
@@ -37,7 +22,6 @@ public class ShapeView extends GridPane{
      * @param shape
      */
     public ShapeView(ShapeBlokus shape) {
-        this.grid = new GridPane();
         this.shapeChosen = shape;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -51,7 +35,7 @@ public class ShapeView extends GridPane{
                         square.setFill(Color.WHITE);
                         square.setStroke(Color.BLACK);
                         }
-                grid.add(square, i, j);
+                this.add(square, i, j);
             }
         }
     }
@@ -64,8 +48,9 @@ public class ShapeView extends GridPane{
      * @return a gridPane.
      */
     public GridPane getGrid() {
-        return grid;
+        return this;
     }
+    
 
     
     

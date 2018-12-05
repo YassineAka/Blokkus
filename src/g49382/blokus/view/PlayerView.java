@@ -32,7 +32,8 @@ public class PlayerView {
      * Create a Vbox and a gridPane with the informations of one players.
      * @param player
      */
-    public PlayerView(Player player){
+    public PlayerView(Player player, Game game){
+        this.game = game;
         int indice = 0;
         this.handler = new ShapeHandler(game);
         this.handlerClick = new ClickHandler();
@@ -44,8 +45,8 @@ public class PlayerView {
             for (int j = 0; j < 7; j++) {
                 ShapeView shapeView = new ShapeView(player.getStock().getShapes().get(indice));
                 shapeView.addEventHandler(MouseEvent.MOUSE_PRESSED, handler);
-                shapeView.addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
-                playerView.add(shapeView.getGrid(), j, i);
+//                shapeView.getGrid().addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
+                playerView.add(shapeView, j, i);
                 
                 indice++;
             }
