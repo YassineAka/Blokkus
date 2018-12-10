@@ -11,7 +11,7 @@ import g49382.blokus.model.Point;
 import g49382.blokus.model.ShapeBlokus;
 import java.util.Observer;
 import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import java.util.Observable;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -28,16 +28,18 @@ public class GamePlateView implements Observer{
     private GridPane grid;
     private SquareHandler handler;
     private Game game;
+    
 
     /**
      * Create a gridPane who represents the plate of the game.
      * @param game
      */
-    public GamePlateView(Game game) {
-        this.game = game;
+    public GamePlateView(Observable game) {
+        this.game = (Game) game;
+        this.game.addObserver(this);
         this.grid = new GridPane();
-        this.handler = new SquareHandler();
-        this.update(null, null);
+        this.handler = new SquareHandler((Game) game);
+        this.update((Game) game, null);
         
     }
 
@@ -55,6 +57,16 @@ public class GamePlateView implements Observer{
             for (int j = 0; j < game.getPlate().getWidth(); j++) {
                 Point p = new Point(j, i);
                 Rectangle square = new Rectangle(30, 30);
+                square.addEventHandler(EventType.ROOT, new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+                            System.out.println(GridPane.getColumnIndex(square));
+                            System.out.println(GridPane.getRowIndex(square));
+                        }
+                    }
+                });
+                
                 square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
                 square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
                 square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);

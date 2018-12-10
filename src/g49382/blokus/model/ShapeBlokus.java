@@ -39,6 +39,11 @@ public class ShapeBlokus {
         return this.color ;
     }
 
+    public int getNumShape() {
+        return numShape;
+    }
+    
+
     /**
      * Set a new color to this shape.
      * @return a Color.

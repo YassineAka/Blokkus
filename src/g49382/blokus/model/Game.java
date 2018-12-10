@@ -8,6 +8,7 @@ package g49382.blokus.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Game extends Observable{
     private Player currentPlayer;
     private GamePlate plate;
     private ShapeBlokus shapeChosen;
+    private List<Observer> observers;
     
     /**
      * Create a new game.
@@ -33,6 +35,8 @@ public class Game extends Observable{
         this.currentPlayer = this.players.get(0);
         this.plate = new GamePlate(20, 20);
         this.shapeChosen = null;
+        this.observers = new ArrayList<>();
+        
     }
     
     /**
@@ -114,7 +118,7 @@ public class Game extends Observable{
         }else{
             System.out.println(" You already placed this shape");
         }
-        
+        this.shapeChosen = null;
         
         
     }
@@ -155,6 +159,27 @@ public class Game extends Observable{
             aff.append("\n");
         }
         return aff ;
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : this.observers) {
+            observer.update(this, null);
+        }
+    }
+
+    @Override
+    public synchronized void deleteObserver(Observer o) {
+        if (this.observers.contains(o)) {
+            this.observers.remove(o);
+        }
+    }
+
+    @Override
+    public synchronized void addObserver(Observer o) {
+        if (!this.observers.contains(o)) {
+            this.observers.add(o);
+        }
     }
     
     

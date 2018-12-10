@@ -8,6 +8,7 @@ package g49382.blokus.view;
 import g49382.blokus.model.Paint;
 import g49382.blokus.model.*;
 import g49382.blokus.model.ShapeBlokus;
+import java.util.Observable;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,11 +36,11 @@ public class FXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
-        Game game = new Game();
-        game.play(10, 11, 11);
-        game.play(17, 8, 6);
-        game.play(5, 2, 2);
-        game.play(21, 9, 16);
+        Observable game = new Game();
+        ((Game) game).play(10, 11, 11);
+        ((Game) game).play(17, 8, 6);
+        ((Game) game).play(5, 2, 2);
+        ((Game) game).play(21, 9, 16);
         Menu Items1 = new Menu("File");
         Menu Items2 = new Menu("Edit");
         Menu Items3 = new Menu("Help");
@@ -52,7 +53,7 @@ public class FXMain extends Application {
         Button toStop = new Button("I stop");
         Button toTurn = new Button("I turn");
         option.getChildren().addAll(newGame,toPass,toStop,toTurn);
-        AllPlayers allPlayers = new AllPlayers(game);
+        AllPlayers allPlayers = new AllPlayers(((Game) game));
         GamePlateView gamePlate = new GamePlateView(game);
         root.setTop(menu);
         root.setLeft(allPlayers.getAllPlayers());
