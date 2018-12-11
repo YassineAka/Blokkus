@@ -37,10 +37,6 @@ public class FXMain extends Application {
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
         Observable game = new Game();
-        ((Game) game).play(10, 11, 11);
-        ((Game) game).play(17, 8, 6);
-        ((Game) game).play(5, 2, 2);
-        ((Game) game).play(21, 9, 16);
         Menu Items1 = new Menu("File");
         Menu Items2 = new Menu("Edit");
         Menu Items3 = new Menu("Help");

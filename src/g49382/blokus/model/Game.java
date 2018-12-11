@@ -53,6 +53,7 @@ public class Game extends Observable{
      */
     public Player getCurrentPlayer() {
         return currentPlayer;
+        
     }
     
     /**
@@ -73,7 +74,7 @@ public class Game extends Observable{
 
     public void setShapeChosen(ShapeBlokus shapeChosen) {
         this.shapeChosen = shapeChosen;
-        notifyObservers();
+        changed();
     }
     
     
@@ -83,6 +84,11 @@ public class Game extends Observable{
      */
     public List<Player> getPlayers() {
         return players;
+    }
+    
+    public void changed(){
+        setChanged();
+        notifyObservers();
     }
     
     /**
@@ -119,7 +125,7 @@ public class Game extends Observable{
             System.out.println(" You already placed this shape");
         }
         this.shapeChosen = null;
-        
+        changed();
         
     }
 
@@ -138,6 +144,7 @@ public class Game extends Observable{
             default:
                 this.currentPlayer = this.players.get(0);
         }
+        changed();
     }
 
     /**

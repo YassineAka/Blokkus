@@ -46,6 +46,7 @@ public class SquareHandler implements EventHandler<MouseEvent> {
             System.out.println(GridPane.getColumnIndex(square));
             game.play(game.getShapeChosen().getNumShape(), GridPane.getColumnIndex((Rectangle) event.getSource()),
                     GridPane.getRowIndex((Rectangle) event.getSource()));
+            game.changed();
             
             }
             for (ShapeBlokus shapeBlokus : game.getPlate().getShapePlaced()) {

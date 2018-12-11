@@ -20,7 +20,8 @@ public class AllPlayers {
     public AllPlayers(Game game) {
         allPlayers = new VBox(4);
         for (Player player : game.getPlayers()) {
-             allPlayers.getChildren().add((new PlayerView(player,game)).getPlayerFullView());
+             allPlayers.getChildren().add((new PlayerView(game)).getPlayerFullView());
+             game.nextPlayer();
              
         }
         
@@ -33,6 +34,7 @@ public class AllPlayers {
     public VBox getAllPlayers() {
         return allPlayers;
     }
+    
     
     
 }
