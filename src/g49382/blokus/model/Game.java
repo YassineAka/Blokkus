@@ -22,6 +22,7 @@ public class Game extends Observable{
     private ShapeBlokus shapeChosen;
     private List<Observer> observers;
     
+    
     /**
      * Create a new game.
      */

@@ -57,7 +57,6 @@ public class PlayerView implements Observer{
     }
 
      public void update(Observable o, Object arg) {
-        System.out.println("UPDATE PLAYER");
         int indice = 0;
         this.playerView.getChildren().clear(); //= new GridPane();
         this.playerFullView.getChildren().clear();// = new VBox();
