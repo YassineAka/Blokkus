@@ -19,8 +19,10 @@ import g49382.blokus.view.GamePlateView;
 import g49382.blokus.view.ShapeView;
 import javafx.event.EventType;
 import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javax.swing.SwingUtilities;
 
 public class SquareHandler implements EventHandler<MouseEvent> {
 
@@ -36,20 +38,27 @@ public class SquareHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         Rectangle square = (Rectangle) event.getSource();
-        if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+        if ((game.getShapeChosen() != null) && (event.getEventType() == MouseEvent.MOUSE_ENTERED)) {
             if (square.getFill() == Color.WHITE) {
-                ShapeBlokus shape = new ShapeBlokus(new Bloc(),new Bloc(0,1),new Bloc(0,2));
+                ShapeBlokus shape = game.getShapeChosen();
                 for (Bloc bloc : shape.getShape()) {
                     double x = GridPane.getColumnIndex(square);
                     double y = GridPane.getRowIndex(square);
                     getNextSquare((x+bloc.getP().getX()), (y+ bloc.getP().getY())).setFill(Color.GRAY);
                 }
             }
+            
         }
-        if (event.getEventType() == MouseEvent.MOUSE_EXITED ) {
+        if (event.getButton() == MouseButton.SECONDARY) {
+            game.turn();
+        }
+
+        if ((event.getEventType() == MouseEvent.MOUSE_EXITED) && (square.getFill()== Color.GRAY) ) {
             plate.update1();
+            game.changed();
         }
-        if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
+        
+        if ((event.getEventType() == MouseEvent.MOUSE_PRESSED) && (event.getButton() == MouseButton.PRIMARY)) {
             if (!(game.getShapeChosen() == null)) {
                 //game.notifyObservers();
                 game.play(game.getShapeChosen().getNumShape(), GridPane.getColumnIndex((Rectangle) event.getSource()),

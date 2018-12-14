@@ -30,6 +30,7 @@ public class ShapeHandler implements EventHandler<MouseEvent>{
             System.out.println(game.getShapeChosen());
         }
         
+        
     }
     
 }

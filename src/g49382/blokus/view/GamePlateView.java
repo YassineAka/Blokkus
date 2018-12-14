@@ -29,6 +29,7 @@ public class GamePlateView implements Observer {
     private GridPane grid;
     private SquareHandler handler;
     private Game game;
+    private ShapeBlokus shapeToPlace;
 
     /**
      * Create a gridPane who represents the plate of the game.
@@ -39,40 +40,13 @@ public class GamePlateView implements Observer {
         this.game = (Game) game;
         this.game.addObserver(this);
         this.grid = new GridPane();
+        this.shapeToPlace = ((Game) game).getShapeChosen();
         this.handler = new SquareHandler((Game) game, this);
         this.update((Game) game, null);
-        for (int i = 0; i < ((Game) game).getPlate().getHeight(); i++) {
-            for (int j = 0; j < ((Game) game).getPlate().getWidth(); j++) {
-                Point p = new Point(j, i);
-                Rectangle square = new Rectangle(30, 30);
-                square.addEventHandler(EventType.ROOT, new EventHandler<Event>() {
-                    @Override
-                    public void handle(Event event) {
-                        if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-                            System.out.println(GridPane.getColumnIndex(square));
-                            System.out.println(GridPane.getRowIndex(square));
-                        }
-                    }
-                });
-
-                square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
-                square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
-                square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);
-
-                if (((Game) game).getPlate().getShapeAt(p) != null) {
-                    ShapeBlokus s = ((Game) game).getPlate().getShapeAt(p);
-                    square.setFill(Color.valueOf(s.getColor().getAscii()));
-                    square.setStroke(Color.BLACK);
-
-                } else {
-                    square.setFill(Color.WHITE);
-                    square.setStroke(Color.BLACK);
-                }
-                grid.add(square, j, i);
-            }
+        
         }
 
-    }
+    
 
     /**
      * Get the gridPane.
@@ -82,6 +56,11 @@ public class GamePlateView implements Observer {
     public GridPane getGrid() {
         return grid;
     }
+
+    public ShapeBlokus getShapeToPlace() {
+        return shapeToPlace;
+    }
+    
 
     @Override
     public void update(java.util.Observable o, Object arg) {
@@ -118,11 +97,17 @@ public class GamePlateView implements Observer {
     }
 
     public void update1() {
-        System.out.println("UPDATE GAMEVIEW");
+        this.grid.getChildren().clear();
         for (int i = 0; i < game.getPlate().getHeight(); i++) {
             for (int j = 0; j < game.getPlate().getWidth(); j++) {
                 Point p = new Point(j, i);
                 Rectangle square = new Rectangle(30, 30);
+                
+
+                square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
+                square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
+                square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);
+
                 if (game.getPlate().getShapeAt(p) != null) {
                     ShapeBlokus s = game.getPlate().getShapeAt(p);
                     square.setFill(Color.valueOf(s.getColor().getAscii()));

@@ -48,6 +48,14 @@ public class FXMain extends Application {
         Button toPass = new Button("I passe");
         Button toStop = new Button("I stop");
         Button toTurn = new Button("I turn");
+        toTurn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (((Game)game).getShapeChosen() != null) {
+                    ((Game)game).turn();
+                }
+            }
+        });
         option.getChildren().addAll(newGame,toPass,toStop,toTurn);
         AllPlayers allPlayers = new AllPlayers(((Game) game));
         GamePlateView gamePlate = new GamePlateView(game);
