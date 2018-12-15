@@ -10,15 +10,15 @@ package g49382.blokus.model;
  * @author PaRaDoxe1070
  */
 public class Point {
-    private double x ;
-    private double y ;    
+    private int x ;
+    private int y ;    
     
     /**
      * Create a new point at the position received in parameter.
      * @param x
      * @param y
      */
-    public Point(double x, double y){
+    public Point(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -36,7 +36,7 @@ public class Point {
      * Get the x of this point.
      * @return x
      */
-    public double getX() {
+    public int getX() {
         return x;
     }
 
@@ -44,15 +44,27 @@ public class Point {
      * Get the y of this point.
      * @return y
      */
-    public double getY() {
+    public int getY() {
         return y;
+    }
+    public void turn(){
+        int a;
+        
+        a = this.x;
+        this.x = this.y;
+        this.y = 0+a;
+        
+    }
+    public void mirror(){
+        this.x = -(this.x);
+        this.y = -(this.y);
     }
 
     /**
      * Set a new value to the x.
      * @param x
      */
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
@@ -60,7 +72,7 @@ public class Point {
      * Set a new value to the y.
      * @param y
      */
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
     
@@ -69,7 +81,7 @@ public class Point {
      * @param x
      * @param y
      */
-    public void move (double x, double y){
+    public void move (int x, int y){
         this.x += x ;
         this.y += y ;
     }

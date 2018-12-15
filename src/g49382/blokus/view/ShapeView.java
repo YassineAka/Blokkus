@@ -23,7 +23,6 @@ public class ShapeView extends GridPane{
      */
     public ShapeView(ShapeBlokus shape) {
         this.shapeChosen = shape;
-        if(shape == null) System.out.println("SHAPE NULL");
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 Point p = new Point(i, j);

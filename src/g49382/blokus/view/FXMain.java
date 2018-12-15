@@ -45,7 +45,19 @@ public class FXMain extends Application {
         option.setSpacing(4);
         option.setAlignment(Pos.CENTER);
         Button newGame = new Button("New Game");
+        newGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ((Game) game).newGame();
+            }
+        });
         Button toPass = new Button("I passe");
+        toPass.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ((Game)game).nextPlayer();
+            }
+        });
         Button toStop = new Button("I stop");
         Button toTurn = new Button("I turn");
         toTurn.setOnAction(new EventHandler<ActionEvent>() {
@@ -56,7 +68,23 @@ public class FXMain extends Application {
                 }
             }
         });
-        option.getChildren().addAll(newGame,toPass,toStop,toTurn);
+        Button toReturn = new Button("I return");
+        toReturn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (((Game)game).getShapeChosen() != null) {
+                    ((Game)game).mirror();
+                }
+            }
+        });
+        Button IA = new Button("IA");
+        IA.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ((Game) game).IA();
+            }
+        });
+        option.getChildren().addAll(newGame,toPass,toStop,toTurn,toReturn, IA);
         AllPlayers allPlayers = new AllPlayers(((Game) game));
         GamePlateView gamePlate = new GamePlateView(game);
         root.setTop(menu);

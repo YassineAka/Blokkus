@@ -64,7 +64,6 @@ public class PlayerView implements Observer{
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 7; j++) {
                 ShapeBlokus shape = player.getStock().getShapes().get(indice);
-                if(shape == null) System.out.println("indice null "+indice);
                 ShapeView shapeView = new ShapeView(shape);
                 shapeView.addEventHandler(MouseEvent.MOUSE_PRESSED, handler);
                 playerView.add(shapeView, j, i);

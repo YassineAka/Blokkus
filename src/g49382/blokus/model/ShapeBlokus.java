@@ -102,6 +102,16 @@ public class ShapeBlokus {
         }
         return false;
     }
+    public Boolean placedWell(Bloc bloc){
+        for (Bloc b : shape) {
+            if (b.atLeastOneArete(bloc)) {
+                return false;
+            }else if(!b.isCoin(bloc)){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
     @Override
