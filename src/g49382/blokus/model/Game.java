@@ -54,7 +54,22 @@ public class Game extends Observable {
      * @return true if the game is over
      */
     public boolean isOver() {
+        if (players.isEmpty()) {
+            this.isOver = true;
+        }
         return isOver;
+    }
+
+    public void remainPlayers() {
+         for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).isStoped()) {
+                 players.remove(players.get(i));
+             }
+        }
+    }
+
+    public void nextPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
     public void newGame() {
@@ -105,7 +120,7 @@ public class Game extends Observable {
 
     public void setShapeChosen(ShapeBlokus shapeChosen) {
         this.shapeChosen = shapeChosen;
-        changed();
+        
     }
 
     public void resetGame() {
@@ -157,33 +172,34 @@ public class Game extends Observable {
      * @param y.
      */
     public void play(int numShape, int x, int y) {
-        shapeChosen = this.currentPlayer.place(numShape);
         if (shapeChosen != null) {
             if (this.currentPlayer.getNbShape() == 21) {
-                if (this.plate.isBorder(this.currentPlayer.getStock().getShapes().get(numShape - 1), x, y)) {
+                if ((this.plate.isBorder(shapeChosen, x, y))) {
                     for (Bloc b : shapeChosen.getShape()) {
                         b.getP().setX(b.getP().getX() + x);
                         b.getP().setY(b.getP().getY() + y);
                     }
-                    this.plate.addShape(shapeChosen);
-                    this.nextPlayer();
+                    this.plate.addShapeBorder(shapeChosen, x, y);
+                    shapeChosen = this.currentPlayer.place(numShape);
+                    this.shapeChosen = null;
+                    this.nextPlayer(this.passToNextPlayer());
+
                 } else {
                     throw new IllegalArgumentException();
                 }
             } else {
+                if ((this.plate.isPossible(shapeChosen, x, y))) {
+                    this.plate.addShape(shapeChosen, x, y);
+                    shapeChosen = this.currentPlayer.place(numShape);
+                    this.shapeChosen = null;
+                    this.nextPlayer(this.passToNextPlayer());
+                } else {
 
-                for (Bloc b : shapeChosen.getShape()) {
-                    b.getP().setX(b.getP().getX() + x);
-                    b.getP().setY(b.getP().getY() + y);
+                    throw new IllegalArgumentException();
                 }
-                this.plate.addShape(shapeChosen);
-                this.nextPlayer();
-            }
-        } else {
-            System.out.println(" You already placed this shape");
-        }
 
-        this.shapeChosen = null;
+            }
+        }
         changed();
 
     }
@@ -191,22 +207,10 @@ public class Game extends Observable {
     /**
      * She passes a turn.
      */
-    public void nextPlayer() {
-        // APA : Un numéro est un modulo aurait été plus élégant
-        switch (this.currentPlayer.getColor()) {
-            case BLUE:
-                this.currentPlayer = this.players.get(1);
-                break;
-            case RED:
-                this.currentPlayer = this.players.get(2);
-                break;
-            case GREEN:
-                this.currentPlayer = this.players.get(3);
-                break;
-            default:
-                this.currentPlayer = this.players.get(0);
-        }
-        changed();
+    public Player passToNextPlayer() {
+        int index = this.players.indexOf(this.currentPlayer);
+        return this.players.get((index + 1) % this.players.size());
+
     }
 
     public void turn() {

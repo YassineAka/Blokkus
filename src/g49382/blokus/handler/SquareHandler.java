@@ -17,6 +17,7 @@ import g49382.blokus.model.Player;
 import g49382.blokus.model.Point;
 import g49382.blokus.view.GamePlateView;
 import g49382.blokus.view.ShapeView;
+import java.util.ConcurrentModificationException;
 import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -41,7 +42,8 @@ public class SquareHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent event) {
         Rectangle square = (Rectangle) event.getSource();
         if ((game.getShapeChosen() != null) && (event.getEventType() == MouseEvent.MOUSE_ENTERED)) {
-            if (square.getFill() == Color.WHITE) {
+            try {
+                if (square.getFill() == Color.WHITE) {
                 ShapeBlokus shape = game.getShapeChosen();
                 for (Bloc bloc : shape.getShape()) {
                     double x = GridPane.getColumnIndex(square);
@@ -52,6 +54,10 @@ public class SquareHandler implements EventHandler<MouseEvent> {
                     }
                 }
             }
+            } catch (ConcurrentModificationException e) {
+                
+            }
+            
 
         }
         if (event.getButton() == MouseButton.SECONDARY) {
@@ -59,27 +65,35 @@ public class SquareHandler implements EventHandler<MouseEvent> {
         }
 
         if ((event.getEventType() == MouseEvent.MOUSE_EXITED) && (square.getFill() == Color.GRAY)) {
-            plate.update1();
+            try {
+                plate.update1();
             game.changed();
+            } catch (ConcurrentModificationException e) {
+            }
         }
 
         if ((event.getEventType() == MouseEvent.MOUSE_PRESSED) && (event.getButton() == MouseButton.PRIMARY)) {
+            //Point posRectangle = new Point(GridPane.getColumnIndex((Rectangle) event.getSource()), GridPane.getRowIndex((Rectangle) event.getSource()));
             try {
-                game.play(game.getShapeChosen().getNumShape(), GridPane.getColumnIndex((Rectangle) event.getSource()),
-                        GridPane.getRowIndex((Rectangle) event.getSource()));
-                game.changed();
+                try {
+                if ((game.getShapeChosen() != null) ) {
+                    game.play(game.getShapeChosen().getNumShape(), GridPane.getColumnIndex((Rectangle) event.getSource()),
+                            GridPane.getRowIndex((Rectangle) event.getSource()));
+                    game.changed();
 
-                for (ShapeBlokus shapeBlokus : game.getPlate().getShapePlaced()) {
-                    System.out.println(shapeBlokus);
+                    for (ShapeBlokus shapeBlokus : game.getPlate().getShapePlaced()) {
+                        System.out.println(shapeBlokus);
+                    }
+                } else {
+                    System.out.println("c'est null");
                 }
             } catch (IllegalArgumentException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You have to place your first shape in a border !");
+                alert.setContentText("Rules 1: You have to place your first shape in a corner of the plate ! \nRules 2 : You have to place your shapes on a corner of an other of your shapes placed and never on a side !");
                 alert.show();
             }
-        }
-        if (event.getEventType() == MouseEvent.MOUSE_EXITED && event.getSource() == ShapeView.class) {
-            System.out.println("oueoueoue");
+            } catch (ConcurrentModificationException e) {
+            }
         }
 
     }
@@ -93,6 +107,20 @@ public class SquareHandler implements EventHandler<MouseEvent> {
 
         }
         return square;
+    }
+
+    public boolean isSquarethere(ShapeBlokus shape, Rectangle square) {
+        boolean isThere = false;
+        for (Bloc bloc : shape.getShape()) {
+            double x = GridPane.getColumnIndex(square);
+            double y = GridPane.getRowIndex(square);
+
+            if (getNextSquare((x + bloc.getP().getX()), (y + bloc.getP().getY())).getFill() != null) {
+                isThere = true;
+            }
+
+        }
+        return isThere;
     }
 
 }

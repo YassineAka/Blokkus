@@ -13,6 +13,7 @@ public class Player {
     private Deck stock;
     private int nbShape;
     private Paint color;
+    private boolean stoped;
 
     /**
      * Create a new Player with the color eceived in parameter.
@@ -22,6 +23,7 @@ public class Player {
         this.stock = new Deck();
         this.nbShape = stock.getNbShape();
         this.color = color;
+        this.stoped = false;
         for (ShapeBlokus s : this.stock.getShapes()) {
             s.setColor(color);
         }
@@ -92,12 +94,21 @@ public class Player {
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof Player  && ((Player)obj).color == this.color) {
+        if (obj instanceof Player  && ((Player)obj).getColor() == this.color) {
             return true;
         }
         return false;
         }
+
+    public boolean isStoped() {
+        return stoped;
+    }
+
+    public void Stop() {
+        this.stoped = true;
+    }
         
+    
         
         
         

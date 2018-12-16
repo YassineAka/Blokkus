@@ -8,8 +8,10 @@ package g49382.blokus.view;
 import g49382.blokus.model.Paint;
 import g49382.blokus.model.*;
 import g49382.blokus.model.ShapeBlokus;
+import java.util.ConcurrentModificationException;
 import java.util.Observable;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -32,7 +34,7 @@ import javafx.stage.Stage;
  * @author PaRaDoxe1070
  */
 public class FXMain extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
@@ -55,16 +57,33 @@ public class FXMain extends Application {
         toPass.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ((Game)game).nextPlayer();
+                try {
+                    ((Game) game).nextPlayer(((Game) game).passToNextPlayer());
+                    ((Game) game).changed();
+                } catch (ConcurrentModificationException e) {
+                }
             }
         });
         Button toStop = new Button("I stop");
+        toStop.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    ((Game) game).getCurrentPlayer().Stop();
+                    ((Game) game).nextPlayer(((Game) game).passToNextPlayer());
+                    ((Game) game).setShapeChosen(null);
+                    ((Game) game).changed();
+                } catch (ConcurrentModificationException e) {
+                }
+                
+            }
+        });
         Button toTurn = new Button("I turn");
         toTurn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (((Game)game).getShapeChosen() != null) {
-                    ((Game)game).turn();
+                if (((Game) game).getShapeChosen() != null) {
+                    ((Game) game).turn();
                 }
             }
         });
@@ -72,8 +91,8 @@ public class FXMain extends Application {
         toReturn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (((Game)game).getShapeChosen() != null) {
-                    ((Game)game).mirror();
+                if (((Game) game).getShapeChosen() != null) {
+                    ((Game) game).mirror();
                 }
             }
         });
@@ -84,8 +103,8 @@ public class FXMain extends Application {
                 ((Game) game).IA();
             }
         });
-        option.getChildren().addAll(newGame,toPass,toStop,toTurn,toReturn, IA);
-        AllPlayers allPlayers = new AllPlayers(((Game) game));
+        option.getChildren().addAll(newGame, toPass, toStop, toTurn, toReturn, IA);
+        AllPlayers allPlayers = new AllPlayers(game);
         GamePlateView gamePlate = new GamePlateView(game);
         root.setTop(menu);
         root.setLeft(allPlayers.getAllPlayers());
@@ -103,5 +122,5 @@ public class FXMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

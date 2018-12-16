@@ -65,16 +65,7 @@ public class GamePlateView implements Observer {
             for (int j = 0; j < game.getPlate().getWidth(); j++) {
                 Point p = new Point(j, i);
                 Rectangle square = new Rectangle(30, 30);
-                if (((i == 0) && (j == 0)) || ((i == 19) && (j == 0)) || ((i == 0) && (j == 19)) || ((i == 19) && (j == 19))) {
-                    square.setFill(Color.BLACK);
-                    square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
-                    square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
-                    square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);
-                    grid.add(square, j, i);
-
-                } else {
-
-                    square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
+                square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
                     square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
                     square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);
 
@@ -88,7 +79,7 @@ public class GamePlateView implements Observer {
                         square.setStroke(Color.BLACK);
                     }
                     grid.add(square, j, i);
-                }
+                
             }
         }
     }
@@ -99,14 +90,7 @@ public class GamePlateView implements Observer {
             for (int j = 0; j < game.getPlate().getWidth(); j++) {
                 Point p = new Point(j, i);
                 Rectangle square = new Rectangle(30, 30);
-                if (((i == 0) && (j == 0)) || ((i == 19) && (j == 0)) || ((i == 0) && (j == 19)) || ((i == 19) && (j == 19))) {
-                    square.setFill(Color.BLACK);
-                    square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
-                    square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
-                    square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);
-                } else {
-
-                    square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
+                square.addEventHandler(MouseEvent.MOUSE_ENTERED, this.handler);
                     square.addEventHandler(MouseEvent.MOUSE_EXITED, this.handler);
                     square.addEventHandler(MouseEvent.MOUSE_PRESSED, this.handler);
 
@@ -120,7 +104,7 @@ public class GamePlateView implements Observer {
                         square.setStroke(Color.BLACK);
                     }
                     grid.add(square, j, i);
-                }
+                
             }
         }
     }

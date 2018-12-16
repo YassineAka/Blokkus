@@ -16,7 +16,7 @@ public class NextPlayer implements Strategy{
 
     @Override
     public void doOperation(ShapeBlokus shape, int x, int y, Game game) {
-        game.nextPlayer();
+        game.nextPlayer(game.passToNextPlayer());
     }
     
 }

@@ -5,10 +5,10 @@
  */
 package g49382.blokus.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
@@ -24,8 +24,8 @@ public class ShapeBlokus {
      *
      * @param blocs
      */
-    public ShapeBlokus(Bloc ...blocs) {
-        this.shape = new LinkedList<Bloc>();
+    public ShapeBlokus(List<Bloc> blocs) {
+        this.shape = new ArrayList<Bloc>();
         for (Bloc bloc : blocs) {
             this.shape.add(bloc);
         }

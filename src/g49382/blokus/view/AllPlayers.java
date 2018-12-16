@@ -8,22 +8,26 @@ package g49382.blokus.view;
 import javafx.scene.layout.VBox;
 import g49382.blokus.model.Game;
 import g49382.blokus.model.Player;
+import java.util.Observable;
+import java.util.Observer;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 
-public class AllPlayers {
+public class AllPlayers implements Observer{
+    private Observable game;
+    
     private VBox allPlayers;
 
     /**
      * Create a Vbox with the informations of all players.
      * @param game
      */
-    public AllPlayers(Game game) {
+    public AllPlayers(Observable game) {
         allPlayers = new VBox(4);
-        for (Player player : game.getPlayers()) {
-             allPlayers.getChildren().add((new PlayerView(game)).getPlayerFullView());
-             game.nextPlayer();
-             
-        }
+        this.game = game;
+        this.game.addObserver(this);
+        this.update(game, null);
         
     }
 
@@ -33,6 +37,32 @@ public class AllPlayers {
      */
     public VBox getAllPlayers() {
         return allPlayers;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {    
+        ((Game)game).remainPlayers();
+        
+        this.allPlayers.getChildren().clear();
+        for (Player player : ((Game)game).getPlayers()) {
+             if (player.equals(((Game)game).getCurrentPlayer())) {
+                allPlayers.getChildren().add((new PlayerView(((Game)game),player,true)).getPlayerFullView());
+                
+                
+            }else{
+                 allPlayers.getChildren().add((new PlayerView(((Game)game),player)).getPlayerFullView());
+                 
+             }
+             
+             
+             
+        }
+        if (((Game)game).isOver()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "The game is Over!", ButtonType.FINISH);
+            alert.show();
+        }
+
+
     }
     
     

@@ -52,12 +52,12 @@ public class Point {
         
         a = this.x;
         this.x = this.y;
-        this.y = 0+a;
+        this.y = 0-a;
         
     }
     public void mirror(){
         this.x = -(this.x);
-        this.y = -(this.y);
+        this.y = (this.y);
     }
 
     /**
