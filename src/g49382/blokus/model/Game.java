@@ -181,6 +181,7 @@ public class Game extends Observable {
                     }
                     this.plate.addShapeBorder(shapeChosen, x, y);
                     shapeChosen = this.currentPlayer.place(numShape);
+                    this.currentPlayer.addScore(shapeChosen);
                     this.shapeChosen = null;
                     this.nextPlayer(this.passToNextPlayer());
 

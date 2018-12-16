@@ -87,7 +87,7 @@ public class PlayerView implements Observer {
                 indice++;
             }
         }
-        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "        Score             14                 Ok");
+        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "      Score :     "+this.player.getScore());
         this.playerFullView.getChildren().add(infoPlayer);
         this.playerFullView.getChildren().add(this.playerView);
         this.playerFullView.setStyle("-fx-border-color: black");
@@ -113,7 +113,7 @@ public class PlayerView implements Observer {
 
             }
         }
-        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "        Score             14                 Ok");
+        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "     Score :     "+this.player.getScore());
         this.playerFullView.getChildren().add(infoPlayer);
         if (player.isStoped()) {
             this.playerFullView.setStyle("-fx-border-color: red");

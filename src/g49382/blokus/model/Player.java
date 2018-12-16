@@ -14,6 +14,7 @@ public class Player {
     private int nbShape;
     private Paint color;
     private boolean stoped;
+    private int score;
 
     /**
      * Create a new Player with the color eceived in parameter.
@@ -27,6 +28,7 @@ public class Player {
         for (ShapeBlokus s : this.stock.getShapes()) {
             s.setColor(color);
         }
+        this.score = 0;
     }
 
     /**
@@ -37,6 +39,11 @@ public class Player {
         this.nbShape = stock.getNbShape();
         this.color = null;
     }
+
+    public int getScore() {
+        return score;
+    }
+    
 
     /**
      * Get the color of this player.
@@ -67,6 +74,10 @@ public class Player {
      */
     public void setNbShape(int nbShape) {
         this.nbShape = nbShape;
+    }
+    
+    public void addScore(ShapeBlokus shape){
+        this.score += shape.getShape().size();
     }
     
     

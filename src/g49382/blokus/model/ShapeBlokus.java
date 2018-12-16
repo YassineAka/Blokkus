@@ -19,6 +19,7 @@ public class ShapeBlokus {
     private int numShape;
     private char charColor;
     private Paint color = null;
+    private final int nbPoints;
 
     /**
      *
@@ -29,6 +30,7 @@ public class ShapeBlokus {
         for (Bloc bloc : blocs) {
             this.shape.add(bloc);
         }
+        this.nbPoints = this.shape.size();
     }
 
     /**
