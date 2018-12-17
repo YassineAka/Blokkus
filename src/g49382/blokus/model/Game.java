@@ -10,6 +10,8 @@ import g49382.blokus.strategy.NextPlayer;
 import g49382.blokus.strategy.PlaceAShape;
 import static java.lang.Math.cos;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -75,23 +77,7 @@ public class Game extends Observable {
     public void nextPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
-    
-    public void newGame() {
-        System.out.println("new Game");
-        this.resetGame();
-        this.players = new ArrayList<Player>(4);
-        this.players.add(new Player(Paint.BLUE));
-        this.players.add(new Player(Paint.RED));
-        this.players.add(new Player(Paint.GREEN));
-        this.players.add(new Player(Paint.YELLOW));
-        this.isOver = false;
-        this.currentPlayer = this.players.get(0);
-        this.plate = new GamePlate(20, 20);
-        this.shapeChosen = null;
-        this.observers = new ArrayList<>();
-        this.nextPlayer(passToNextPlayer());
-        changed();
-    }
+
 
     /**
      * Get the current player of this game.
@@ -273,8 +259,11 @@ public class Game extends Observable {
     
     @Override
     public void notifyObservers() {
-        for (Observer observer : this.observers) {
+        try {
+            for (Observer observer : this.observers) {
             observer.update(this, null);
+        }
+        } catch (ConcurrentModificationException e) {
         }
     }
     
@@ -290,6 +279,28 @@ public class Game extends Observable {
         if (!this.observers.contains(o)) {
             this.observers.add(o);
         }
+    }
+    /**
+     * She reset the game. You juste have to reslect a shape and choose a new position in the plate an then the gameplate(the board) will reset.
+     */
+    public void newGame() {
+        System.out.println("new Game");
+        this.players = null;
+        this.plate = null;
+        this.playersstoped = null;
+        this.players = new ArrayList<Player>(4);
+        this.players.add(new Player(Paint.BLUE));
+        this.players.add(new Player(Paint.RED));
+        this.players.add(new Player(Paint.GREEN));
+        this.players.add(new Player(Paint.YELLOW));
+        this.isOver = false;
+        this.currentPlayer = null;
+        this.plate = new GamePlate(20, 20);
+        this.shapeChosen = null;
+        this.nextPlayer(passToNextPlayer());
+        changed();
+        System.out.println("yes");
+        
     }
     
 }
