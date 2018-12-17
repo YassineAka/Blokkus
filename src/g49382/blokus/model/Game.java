@@ -58,6 +58,7 @@ public class Game extends Observable {
     public boolean isOver() {
         if (players.isEmpty()) {
             this.isOver = true;
+            
         }
         return isOver;
     }
