@@ -66,8 +66,8 @@ public class SquareHandler implements EventHandler<MouseEvent> {
 
         if ((event.getEventType() == MouseEvent.MOUSE_EXITED) && (square.getFill() == Color.GRAY)) {
             try {
-                plate.update1();
-            game.changed();
+                plate.update(((Game)game),null);
+                game.changed();
             } catch (ConcurrentModificationException e) {
             }
         }
@@ -109,18 +109,5 @@ public class SquareHandler implements EventHandler<MouseEvent> {
         return square;
     }
 
-    public boolean isSquarethere(ShapeBlokus shape, Rectangle square) {
-        boolean isThere = false;
-        for (Bloc bloc : shape.getShape()) {
-            double x = GridPane.getColumnIndex(square);
-            double y = GridPane.getRowIndex(square);
-
-            if (getNextSquare((x + bloc.getP().getX()), (y + bloc.getP().getY())).getFill() != null) {
-                isThere = true;
-            }
-
-        }
-        return isThere;
-    }
 
 }

@@ -43,6 +43,16 @@ public class Player {
     public int getScore() {
         return score;
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
+
+    public void setColor(Paint color) {
+        this.color = color;
+    }
+    
     
 
     /**
@@ -95,7 +105,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player " +color+ ": "+ nbShape +" shapes "+ "Stock: " +'{' + '}';
+        return "The player " +color+"." ;
     }
 
     @Override

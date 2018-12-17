@@ -61,6 +61,7 @@ public class GamePlateView implements Observer {
 
     @Override
     public void update(java.util.Observable o, Object arg) {
+        this.grid.getChildren().clear();
         for (int i = 0; i < game.getPlate().getHeight(); i++) {
             for (int j = 0; j < game.getPlate().getWidth(); j++) {
                 Point p = new Point(j, i);

@@ -19,8 +19,9 @@ import java.util.Observer;
  * @author PaRaDoxe1070
  */
 public class Game extends Observable {
-
+    
     private List<Player> players;
+    private List<Player> playersstoped;
     private boolean isOver;
     private Player currentPlayer;
     private GamePlate plate;
@@ -34,6 +35,7 @@ public class Game extends Observable {
      */
     public Game() {
         this.players = new ArrayList<Player>(4);
+        this.playersstoped = new ArrayList<Player>();
         this.players.add(new Player(Paint.BLUE));
         this.players.add(new Player(Paint.RED));
         this.players.add(new Player(Paint.GREEN));
@@ -45,7 +47,7 @@ public class Game extends Observable {
         this.observers = new ArrayList<>();
         this.contextPlace = new Context(new PlaceAShape());
         this.contextPass = new Context(new NextPlayer());
-
+        
     }
 
     /**
@@ -59,19 +61,20 @@ public class Game extends Observable {
         }
         return isOver;
     }
-
+    
     public void remainPlayers() {
-         for (int i = 0; i < players.size(); i++) {
+        for (int i = 0; i < players.size(); i++) {
             if (players.get(i).isStoped()) {
-                 players.remove(players.get(i));
-             }
+                playersstoped.add(players.get(i));
+                players.remove(players.get(i));
+            }
         }
     }
-
+    
     public void nextPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
-
+    
     public void newGame() {
         System.out.println("new Game");
         this.resetGame();
@@ -85,8 +88,7 @@ public class Game extends Observable {
         this.plate = new GamePlate(20, 20);
         this.shapeChosen = null;
         this.observers = new ArrayList<>();
-        this.contextPlace = new Context(new PlaceAShape());
-        this.contextPass = new Context(new NextPlayer());
+        this.nextPlayer(passToNextPlayer());
         changed();
     }
 
@@ -97,7 +99,7 @@ public class Game extends Observable {
      */
     public Player getCurrentPlayer() {
         return currentPlayer;
-
+        
     }
 
     /**
@@ -117,12 +119,12 @@ public class Game extends Observable {
     public ShapeBlokus getShapeChosen() {
         return shapeChosen;
     }
-
+    
     public void setShapeChosen(ShapeBlokus shapeChosen) {
         this.shapeChosen = shapeChosen;
         
     }
-
+    
     public void resetGame() {
         this.players.clear();
         this.isOver = false;
@@ -140,7 +142,7 @@ public class Game extends Observable {
     public List<Player> getPlayers() {
         return players;
     }
-
+    
     public void changed() {
         setChanged();
         notifyObservers();
@@ -153,14 +155,18 @@ public class Game extends Observable {
      * @return Player
      */
     public Player getWinner() {
-        for (Player player : players) {
-            if (player.getNbShape() == 0) {
-                this.isOver = true;
-                return player;
+        Player winner = new Player();
+        int score;
+        score = 0;
+        for (Player p : this.playersstoped) {
+            System.out.println(p.getScore());
+            if (p.getScore() > score) {
+                score = p.getScore();
+                winner.setColor(p.getColor()); 
             }
         }
-        return null;
-
+        return winner;
+        
     }
 
     /**
@@ -184,7 +190,7 @@ public class Game extends Observable {
                     this.currentPlayer.addScore(shapeChosen);
                     this.shapeChosen = null;
                     this.nextPlayer(this.passToNextPlayer());
-
+                    
                 } else {
                     throw new IllegalArgumentException();
                 }
@@ -195,14 +201,14 @@ public class Game extends Observable {
                     this.shapeChosen = null;
                     this.nextPlayer(this.passToNextPlayer());
                 } else {
-
+                    
                     throw new IllegalArgumentException();
                 }
-
+                
             }
         }
         changed();
-
+        
     }
 
     /**
@@ -211,9 +217,9 @@ public class Game extends Observable {
     public Player passToNextPlayer() {
         int index = this.players.indexOf(this.currentPlayer);
         return this.players.get((index + 1) % this.players.size());
-
+        
     }
-
+    
     public void turn() {
         if (shapeChosen != null) {
             for (Bloc bloc : shapeChosen.getShape()) {
@@ -221,7 +227,7 @@ public class Game extends Observable {
             }
         }
     }
-
+    
     public void mirror() {
         if (shapeChosen != null) {
             for (Bloc bloc : shapeChosen.getShape()) {
@@ -229,14 +235,17 @@ public class Game extends Observable {
             }
         }
     }
-
+    
     public void IA() {
-        for (int i = 0; i < 15; i++) {
-            contextPlace.executeStrategy(this.currentPlayer.getStock().getShapes().get(i), i + 1, i + 2, this);
+        for (int i = 0; i < 20; i++) {
+            int shapeAléatoire = 0 + (int) (Math.random() * (((this.currentPlayer.getStock().getShapes().size() - 1) - 0) + 1));
+            int posXY = 0 + (int) (Math.random() * ((19 - 0) + 1));
+            
+            contextPlace.executeStrategy(this.currentPlayer.getStock().getShapes().get(shapeAléatoire), posXY, posXY, this);
             contextPass.executeStrategy(null, 0, 0, this);
             changed();
         }
-
+        
     }
 
     /**
@@ -260,26 +269,26 @@ public class Game extends Observable {
         }
         return aff;
     }
-
+    
     @Override
     public void notifyObservers() {
         for (Observer observer : this.observers) {
             observer.update(this, null);
         }
     }
-
+    
     @Override
     public synchronized void deleteObserver(Observer o) {
         if (this.observers.contains(o)) {
             this.observers.remove(o);
         }
     }
-
+    
     @Override
     public synchronized void addObserver(Observer o) {
         if (!this.observers.contains(o)) {
             this.observers.add(o);
         }
     }
-
+    
 }

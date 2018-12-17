@@ -7,6 +7,7 @@ package g49382.blokus.view;
 
 import javafx.scene.layout.VBox;
 import g49382.blokus.model.Game;
+import g49382.blokus.model.Paint;
 import g49382.blokus.model.Player;
 import java.util.Observable;
 import java.util.Observer;
@@ -58,7 +59,10 @@ public class AllPlayers implements Observer{
              
         }
         if (((Game)game).isOver()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "The game is Over!", ButtonType.FINISH);
+            Player winner = ((Game)game).getWinner();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("The winner is the player "+winner.getColor()+"\nCONGRATULATION !!!!! .");
+            alert.setHeaderText("THE GAME IS OVER !");
             alert.show();
         }
 
