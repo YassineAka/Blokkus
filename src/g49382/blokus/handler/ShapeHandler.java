@@ -27,7 +27,6 @@ public class ShapeHandler implements EventHandler<MouseEvent>{
 //        ShapeView grid = (ShapeView) event.getSource();
         if (event.getEventType() == MouseEvent.MOUSE_PRESSED && event.getSource() instanceof ShapeView ) {
             game.setShapeChosen(((ShapeView)event.getSource()).getShapeChosen());
-            System.out.println(game.getShapeChosen());
             
         }
         

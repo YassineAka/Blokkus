@@ -81,15 +81,11 @@ public class SquareHandler implements EventHandler<MouseEvent> {
                             GridPane.getRowIndex((Rectangle) event.getSource()));
                     game.changed();
 
-                    for (ShapeBlokus shapeBlokus : game.getPlate().getShapePlaced()) {
-                        System.out.println(shapeBlokus);
-                    }
-                } else {
-                    System.out.println("c'est null");
+                    
                 }
             } catch (IllegalArgumentException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Rules 1: You have to place your first shape in a corner of the plate ! \nRules 2 : You have to place your shapes on a corner of an other of your shapes placed and never on a side !");
+                alert.setContentText("Rules 1: You have to place your first shape in a corner of the plate ! \nRules 2 : You have to place your shapes on a corner of an other of your shapes placed and never on a side !\nRules 3 : You can't place your shapes beyond the plate !");
                 alert.show();
             }
             } catch (ConcurrentModificationException e) {

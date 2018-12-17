@@ -146,7 +146,6 @@ public class Game extends Observable {
         int score;
         score = 0;
         for (Player p : this.playersstoped) {
-            System.out.println(p.getScore());
             if (p.getScore() > score) {
                 score = p.getScore();
                 winner.setColor(p.getColor()); 
@@ -284,11 +283,11 @@ public class Game extends Observable {
      * She reset the game. You juste have to reslect a shape and choose a new position in the plate an then the gameplate(the board) will reset.
      */
     public void newGame() {
-        System.out.println("new Game");
         this.players = null;
         this.plate = null;
         this.playersstoped = null;
         this.players = new ArrayList<Player>(4);
+        this.playersstoped = new ArrayList<>();
         this.players.add(new Player(Paint.BLUE));
         this.players.add(new Player(Paint.RED));
         this.players.add(new Player(Paint.GREEN));
@@ -299,7 +298,6 @@ public class Game extends Observable {
         this.shapeChosen = null;
         this.nextPlayer(passToNextPlayer());
         changed();
-        System.out.println("yes");
         
     }
     

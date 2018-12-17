@@ -46,6 +46,11 @@ public class FXMain extends Application {
         HBox option = new HBox();
         option.setSpacing(4);
         option.setAlignment(Pos.CENTER);
+        
+        
+        
+        
+        //button new game
         Button newGame = new Button("New Game");
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -53,6 +58,13 @@ public class FXMain extends Application {
                 ((Game) game).newGame();
             }
         });
+        
+        
+        
+        
+        
+        
+        //button pass
         Button toPass = new Button("I passe");
         toPass.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -64,6 +76,12 @@ public class FXMain extends Application {
                 }
             }
         });
+        
+        
+        
+        
+        
+        //button stop
         Button toStop = new Button("I stop");
         toStop.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -78,6 +96,11 @@ public class FXMain extends Application {
                 
             }
         });
+        
+        
+        
+        
+        //button turn
         Button toTurn = new Button("I turn");
         toTurn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -87,6 +110,12 @@ public class FXMain extends Application {
                 }
             }
         });
+        
+        
+        
+        
+        
+        //button return
         Button toReturn = new Button("I return");
         toReturn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -96,6 +125,11 @@ public class FXMain extends Application {
                 }
             }
         });
+        
+        
+        
+        
+        //button IA
         Button IA = new Button("IA");
         IA.setOnAction(new EventHandler<ActionEvent>() {
             @Override
