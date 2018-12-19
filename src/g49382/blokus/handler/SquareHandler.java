@@ -16,6 +16,7 @@ import g49382.blokus.model.ShapeBlokus;
 import g49382.blokus.model.Player;
 import g49382.blokus.model.Point;
 import g49382.blokus.view.GamePlateView;
+import g49382.blokus.view.HistoricalView;
 import g49382.blokus.view.ShapeView;
 import java.util.ConcurrentModificationException;
 import javafx.event.EventType;
@@ -31,9 +32,11 @@ public class SquareHandler implements EventHandler<MouseEvent> {
 
     public Game game;
     public GamePlateView plate;
+    public HistoricalView historical;
     public ShapeHandler handler;
 
     public SquareHandler(Game game, GamePlateView plate) {
+        this.historical = historical;
         this.game = game;
         this.plate = plate;
     }

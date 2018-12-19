@@ -119,7 +119,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "The player " + color + ".";
+        return "The player " + color ;
     }
 
     @Override

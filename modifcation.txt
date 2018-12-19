@@ -1,0 +1,7 @@
+- l'exercice 1 est fait entièrement.
+
+- l'exercie 2 aussi.
+
+-l'ajout de l'historique. 
+(Il ne se met pas à jour graphiquement, 
+pendant que vous jouez c'est à dire que vous devez d'abord jouer et ensuite une fois que vous cliquerez sur historique dans edit il vous sortira l'historique de tous les hits précédents).

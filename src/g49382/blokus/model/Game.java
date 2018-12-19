@@ -8,13 +8,16 @@ package g49382.blokus.model;
 import g49382.blokus.strategy.Context;
 import g49382.blokus.strategy.NextPlayer;
 import g49382.blokus.strategy.PlaceAShape;
+import g49382.blokus.view.HistoricalView;
 import static java.lang.Math.cos;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -29,6 +32,7 @@ public class Game extends Observable {
     private GamePlate plate;
     private ShapeBlokus shapeChosen;
     private List<Observer> observers;
+    private List<Text> historical;
     private Context contextPlace;
     private Context contextPass;
 
@@ -47,9 +51,9 @@ public class Game extends Observable {
         this.plate = new GamePlate(20, 20);
         this.shapeChosen = null;
         this.observers = new ArrayList<>();
+        this.historical = new LinkedList<>();
         this.contextPlace = new Context(new PlaceAShape());
         this.contextPass = new Context(new NextPlayer());
-
     }
 
     /**
@@ -64,6 +68,7 @@ public class Game extends Observable {
         }
         return isOver;
     }
+    
 
     public void remainPlayers() {
         for (int i = 0; i < players.size(); i++) {
@@ -75,6 +80,9 @@ public class Game extends Observable {
         }
     }
 
+    public List<Text> getHistorical() {
+        return historical;
+    }
 
     public void nextPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
@@ -173,23 +181,27 @@ public class Game extends Observable {
                         b.getP().setX(b.getP().getX() + x);
                         b.getP().setY(b.getP().getY() + y);
                     }
+                    
                     this.plate.addShapeBorder(shapeChosen, x, y);
                     shapeChosen = this.currentPlayer.place(numShape);
+                    this.getHistorical().add(new Text(this.currentPlayer.toString() + " " + this.shapeChosen.toString()));                   
                     this.currentPlayer.addScore(shapeChosen);
-                    this.shapeChosen = null;
+                    shapeChosen = null;
                     this.nextPlayer(this.passToNextPlayer());
 
                 } else {
                     throw new IllegalArgumentException();
+                    
                 }
             } else {
                 if ((this.plate.isPossible(shapeChosen, x, y))) {
                     this.plate.addShape(shapeChosen, x, y);
                     shapeChosen = this.currentPlayer.place(numShape);
-                    this.shapeChosen = null;
+                    this.getHistorical().add(new Text(this.currentPlayer.toString() + " " + this.shapeChosen.toString()));
+                    shapeChosen = null;
                     this.nextPlayer(this.passToNextPlayer());
+                    
                 } else {
-
                     throw new IllegalArgumentException();
                 }
 
@@ -198,6 +210,7 @@ public class Game extends Observable {
         changed();
 
     }
+    
 
     /**
      * She passes a turn.
@@ -312,6 +325,7 @@ public class Game extends Observable {
                         }
                         this.plate.addShapeBorder(shapeChosen, x, y);
                         shapeChosen = this.currentPlayer.place(p);
+                        this.getHistorical().add(new Text(this.currentPlayer.toString() + " " + this.shapeChosen.toString()));     
                         this.currentPlayer.addScore(shapeChosen);
                         this.shapeChosen = null;
                         this.nextPlayer(this.passToNextPlayer());
@@ -325,6 +339,7 @@ public class Game extends Observable {
                     if ((this.plate.isPossible(shapeChosen, x, y))) {
                         this.plate.addShape(shapeChosen, x, y);
                         shapeChosen = this.currentPlayer.place(p);
+                        this.getHistorical().add(new Text(this.currentPlayer.toString() + " " + this.shapeChosen.toString()));     
                         this.currentPlayer.addScore(shapeChosen);
                         this.shapeChosen = null;
                         this.nextPlayer(this.passToNextPlayer());

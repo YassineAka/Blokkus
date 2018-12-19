@@ -42,7 +42,7 @@ public class GamePlateView implements Observer {
         this.grid = new GridPane();
         this.shapeToPlace = ((Game) game).getShapeChosen();
         this.handler = new SquareHandler((Game) game, this);
-        this.update((Game) game, null);
+        this.update(game, null);
 
     }
     

@@ -118,7 +118,7 @@ public class ShapeBlokus {
 
     @Override
     public String toString() {
-        return "Shape n°"+ numShape+"{" + shape ;
+        return "Shape n°"+numShape+"." ;
     } 
 
     

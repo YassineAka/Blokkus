@@ -34,6 +34,7 @@ public class PlayerView implements Observer {
     /**
      * Create a Vbox and a gridPane with the informations of one players.
      *
+     * @param game
      * @param player
      */
     public PlayerView(Observable game, Player player) {
@@ -45,7 +46,7 @@ public class PlayerView implements Observer {
         this.playerView.setHgap(2);
         this.playerView.setVgap(2);
         this.handler = new ShapeHandler((Game) game);
-        update((Game) game, null);
+        update( game, null);
 
     }
 
@@ -72,7 +73,7 @@ public class PlayerView implements Observer {
     }
 
     public void update(Observable o, Object arg) {
-
+        System.out.println("player appelé");
         int indice = 0;
         this.playerView.getChildren().clear(); //= new GridPane();
         this.playerFullView.getChildren().clear();// = new VBox();
