@@ -5,6 +5,10 @@
  */
 package g49382.blokus.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author PaRaDoxe1070
@@ -102,6 +106,12 @@ public class Player {
         this.nbShape--;
         return shapechosen;
     }
+        public ShapeBlokus placeIa(int numShape){
+        ShapeBlokus shapechosen = this.stock.getShapes().get(numShape-1);
+//        this.stock.getShapes().set(numShape-1, null);
+//        this.nbShape--;
+        return shapechosen;
+    }
 
     @Override
     public String toString() {
@@ -128,9 +138,7 @@ public class Player {
     public void Stop() {
         this.stoped = true;
     }
-        
-    
-        
+               
         
         
     

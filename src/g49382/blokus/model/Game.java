@@ -21,7 +21,7 @@ import java.util.Observer;
  * @author PaRaDoxe1070
  */
 public class Game extends Observable {
-    
+
     private List<Player> players;
     private List<Player> playersstoped;
     private boolean isOver;
@@ -49,7 +49,7 @@ public class Game extends Observable {
         this.observers = new ArrayList<>();
         this.contextPlace = new Context(new PlaceAShape());
         this.contextPass = new Context(new NextPlayer());
-        
+
     }
 
     /**
@@ -60,24 +60,26 @@ public class Game extends Observable {
     public boolean isOver() {
         if (players.isEmpty()) {
             this.isOver = true;
-            
+
         }
         return isOver;
     }
-    
+
     public void remainPlayers() {
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).isStoped()) {
+//                this.nextPlayer(players.get(i+1));
                 playersstoped.add(players.get(i));
                 players.remove(players.get(i));
             }
         }
     }
-    
+
+
     public void nextPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
+        changed();
     }
-
 
     /**
      * Get the current player of this game.
@@ -86,7 +88,7 @@ public class Game extends Observable {
      */
     public Player getCurrentPlayer() {
         return currentPlayer;
-        
+
     }
 
     /**
@@ -106,12 +108,12 @@ public class Game extends Observable {
     public ShapeBlokus getShapeChosen() {
         return shapeChosen;
     }
-    
+
     public void setShapeChosen(ShapeBlokus shapeChosen) {
         this.shapeChosen = shapeChosen;
-        
+
     }
-    
+
     public void resetGame() {
         this.players.clear();
         this.isOver = false;
@@ -129,7 +131,7 @@ public class Game extends Observable {
     public List<Player> getPlayers() {
         return players;
     }
-    
+
     public void changed() {
         setChanged();
         notifyObservers();
@@ -148,11 +150,11 @@ public class Game extends Observable {
         for (Player p : this.playersstoped) {
             if (p.getScore() > score) {
                 score = p.getScore();
-                winner.setColor(p.getColor()); 
+                winner.setColor(p.getColor());
             }
         }
         return winner;
-        
+
     }
 
     /**
@@ -176,7 +178,7 @@ public class Game extends Observable {
                     this.currentPlayer.addScore(shapeChosen);
                     this.shapeChosen = null;
                     this.nextPlayer(this.passToNextPlayer());
-                    
+
                 } else {
                     throw new IllegalArgumentException();
                 }
@@ -187,14 +189,14 @@ public class Game extends Observable {
                     this.shapeChosen = null;
                     this.nextPlayer(this.passToNextPlayer());
                 } else {
-                    
+
                     throw new IllegalArgumentException();
                 }
-                
+
             }
         }
         changed();
-        
+
     }
 
     /**
@@ -203,9 +205,9 @@ public class Game extends Observable {
     public Player passToNextPlayer() {
         int index = this.players.indexOf(this.currentPlayer);
         return this.players.get((index + 1) % this.players.size());
-        
+
     }
-    
+
     public void turn() {
         if (shapeChosen != null) {
             for (Bloc bloc : shapeChosen.getShape()) {
@@ -213,25 +215,13 @@ public class Game extends Observable {
             }
         }
     }
-    
+
     public void mirror() {
         if (shapeChosen != null) {
             for (Bloc bloc : shapeChosen.getShape()) {
                 bloc.getP().mirror();
             }
         }
-    }
-    
-    public void IA() {
-        for (int i = 0; i < 20; i++) {
-            int shapeAléatoire = 0 + (int) (Math.random() * (((this.currentPlayer.getStock().getShapes().size() - 1) - 0) + 1));
-            int posXY = 0 + (int) (Math.random() * ((19 - 0) + 1));
-            
-            contextPlace.executeStrategy(this.currentPlayer.getStock().getShapes().get(shapeAléatoire), posXY, posXY, this);
-            contextPass.executeStrategy(null, 0, 0, this);
-            changed();
-        }
-        
     }
 
     /**
@@ -255,32 +245,34 @@ public class Game extends Observable {
         }
         return aff;
     }
-    
+
     @Override
     public void notifyObservers() {
         try {
             for (Observer observer : this.observers) {
-            observer.update(this, null);
-        }
+                observer.update(this, null);
+            }
         } catch (ConcurrentModificationException e) {
         }
     }
-    
+
     @Override
     public synchronized void deleteObserver(Observer o) {
         if (this.observers.contains(o)) {
             this.observers.remove(o);
         }
     }
-    
+
     @Override
     public synchronized void addObserver(Observer o) {
         if (!this.observers.contains(o)) {
             this.observers.add(o);
         }
     }
+
     /**
-     * She reset the game. You juste have to reslect a shape and choose a new position in the plate an then the gameplate(the board) will reset.
+     * She reset the game. You juste have to reslect a shape and choose a new
+     * position in the plate an then the gameplate(the board) will reset.
      */
     public void newGame() {
         this.players = null;
@@ -298,7 +290,63 @@ public class Game extends Observable {
         this.shapeChosen = null;
         this.nextPlayer(passToNextPlayer());
         changed();
-        
+
     }
-    
+
+    public void playIA() {
+        boolean ok = false;
+        int cpt = 0;
+        while (!ok && cpt < 10000) {
+            try {
+                cpt++;
+                int x = ((int) (19 * Math.random()));
+                int y = ((int) (19 * Math.random()));
+                int p = ((int) (21 * Math.random()));
+                this.shapeChosen = currentPlayer.getStock().getShapes().get(p - 1);
+
+                if (this.currentPlayer.getNbShape() == 21) {
+                    if ((this.plate.isBorder(shapeChosen, x, y))) {
+                        for (Bloc b : shapeChosen.getShape()) {
+                            b.getP().setX(b.getP().getX() + x);
+                            b.getP().setY(b.getP().getY() + y);
+                        }
+                        this.plate.addShapeBorder(shapeChosen, x, y);
+                        shapeChosen = this.currentPlayer.place(p);
+                        this.currentPlayer.addScore(shapeChosen);
+                        this.shapeChosen = null;
+                        this.nextPlayer(this.passToNextPlayer());
+                        ok = true;
+                        changed();
+
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
+                } else {
+                    if ((this.plate.isPossible(shapeChosen, x, y))) {
+                        this.plate.addShape(shapeChosen, x, y);
+                        shapeChosen = this.currentPlayer.place(p);
+                        this.currentPlayer.addScore(shapeChosen);
+                        this.shapeChosen = null;
+                        this.nextPlayer(this.passToNextPlayer());
+                        ok = true;
+                        changed();
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
+
+                }
+                notifyObservers();
+
+            } catch (Exception e) {
+                e.getMessage();
+            }
+        }
+        if (cpt == 10000) {
+            this.currentPlayer.Stop();
+            this.nextPlayer(passToNextPlayer());
+
+        }
+
+    }
+
 }

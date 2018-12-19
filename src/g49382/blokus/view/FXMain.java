@@ -134,7 +134,7 @@ public class FXMain extends Application {
         IA.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ((Game) game).IA();
+                ((Game) game).playIA();
             }
         });
         option.getChildren().addAll(newGame, toPass, toStop, toTurn, toReturn, IA);

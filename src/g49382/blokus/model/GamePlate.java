@@ -76,9 +76,9 @@ public class GamePlate extends java.util.Observable {
             if (!((bloc.getP().getX()) >= 0 && (bloc.getP().getY()) >= 0
                     && (bloc.getP().getX()) <= 19 && (bloc.getP().getY()) <= 19)) {
                 for (Bloc b : shape.getShape()) {
-                        b.getP().setX(b.getP().getX() - x);
-                        b.getP().setY(b.getP().getY() - y);
-                    }
+                    b.getP().setX(b.getP().getX() - x);
+                    b.getP().setY(b.getP().getY() - y);
+                }
                 throw new IllegalArgumentException();
             }
         }
@@ -97,35 +97,30 @@ public class GamePlate extends java.util.Observable {
         this.shapePlaced.add(shape);
     }
 
-//    public boolean stayInPlate(ShapeBlokus shape, int x, int y) {
-//        boolean isInPlate = true;
-//        for (Bloc b : shape.getShape()) {
-//            b.getP().setX(b.getP().getX() + x);
-//            b.getP().setY(b.getP().getY() + y);
-//        }
-//        for (Bloc bloc : shape.getShape()) {
-//            if (bloc.getP().getX() < 0 || bloc.getP().getY() < 0 || bloc.getP().getX() >= 20 || bloc.getP().getY() >= 20) {
-//                for (Bloc b : shape.getShape()) {
-//                    b.getP().setX(b.getP().getX() - x);
-//                    b.getP().setY(b.getP().getY() - y);
-//                }
-//                isInPlate = false;
-//            }
-//        }
-//
-//        return isInPlate;
-//    }
+   
 
-    public void addShapeBorder(ShapeBlokus shape,int x, int y) {
+    public void addShapeBorder(ShapeBlokus shape, int x, int y) {
         for (Bloc bloc : shape.getShape()) {
             if (!((bloc.getP().getX()) >= 0 && (bloc.getP().getY()) >= 0
                     && (bloc.getP().getX()) <= 19 && (bloc.getP().getY()) <= 19)) {
                 for (Bloc b : shape.getShape()) {
+                    b.getP().setX(b.getP().getX() - x);
+                    b.getP().setY(b.getP().getY() - y);
+                }
+                throw new IllegalArgumentException();
+            }
+        }
+        for (ShapeBlokus shapeBlokus : shapePlaced) {
+            for (Bloc bloc : shapeBlokus.getShape()) {
+                if (shape.isInside(bloc.getP())) {
+                    for (Bloc b : shape.getShape()) {
                         b.getP().setX(b.getP().getX() - x);
                         b.getP().setY(b.getP().getY() - y);
                     }
-                throw new IllegalArgumentException();
+                    throw new IllegalArgumentException();
+                }
             }
+
         }
         this.shapePlaced.add(shape);
     }
@@ -225,5 +220,6 @@ public class GamePlate extends java.util.Observable {
     public boolean isPossible(ShapeBlokus shape, int x, int y) {
         return isCoin(shape, x, y) && !isBesind(shape, x, y);
     }
+
 
 }

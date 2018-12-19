@@ -45,6 +45,7 @@ public class GamePlateView implements Observer {
         this.update((Game) game, null);
 
     }
+    
 
     /**
      * Get the gridPane.
