@@ -36,7 +36,7 @@ public class PlayerView implements Observer {
      *
      * @param player
      */
-    public PlayerView(Observable game,Player player) {
+    public PlayerView(Observable game, Player player) {
         this.game = (Game) game;
         this.game.addObserver(this);
         this.player = player;
@@ -48,7 +48,8 @@ public class PlayerView implements Observer {
         update((Game) game, null);
 
     }
-    public PlayerView(Observable game,Player player, boolean bool) {
+
+    public PlayerView(Observable game, Player player, boolean bool) {
         this.game = (Game) game;
         this.game.addObserver(this);
         this.player = player;
@@ -71,13 +72,13 @@ public class PlayerView implements Observer {
     }
 
     public void update(Observable o, Object arg) {
-        
+
         int indice = 0;
         this.playerView.getChildren().clear(); //= new GridPane();
         this.playerFullView.getChildren().clear();// = new VBox();
 
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 7; j++) {
+            for (int j = 0; j < 8; j++) {
                 ShapeBlokus shape = player.getStock().getShapes().get(indice);
                 ShapeView shapeView = new ShapeView(shape);
                 if (game.getCurrentPlayer().equals(player)) {
@@ -85,21 +86,29 @@ public class PlayerView implements Observer {
                 }
                 playerView.add(shapeView, j, i);
                 indice++;
+                if (indice == 22) {
+                    break;
+                }
+
+            }
+            if (indice == 22) {
+                break;
             }
         }
-        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "      Score :     "+this.player.getScore());
+        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "      Score :     " + this.player.getScore());
         this.playerFullView.getChildren().add(infoPlayer);
         this.playerFullView.getChildren().add(this.playerView);
         this.playerFullView.setStyle("-fx-border-color: black");
 
     }
+
     public void update1() {
         int indice = 0;
         this.playerView.getChildren().clear(); //= new GridPane();
         this.playerFullView.getChildren().clear();// = new VBox();
 
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 7; j++) {
+            for (int j = 0; j < 8; j++) {
                 ShapeBlokus shape = player.getStock().getShapes().get(indice);
                 if (player.getColor() == this.game.getCurrentPlayer().getColor()) {
                     ShapeView shapeView = new ShapeView(shape, true);
@@ -107,20 +116,31 @@ public class PlayerView implements Observer {
                         shapeView.addEventHandler(MouseEvent.MOUSE_PRESSED, handler);
                         playerView.add(shapeView, j, i);
                         indice++;
+
                     }
-                
+                }
+                if (indice == 22) {
+                    break;
+
                 }
 
             }
+            if (indice == 22) {
+                break;
+            }
         }
-        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "     Score :     "+this.player.getScore());
-        this.playerFullView.getChildren().add(infoPlayer);
+        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "     Score :     " + this.player.getScore());
+
+        this.playerFullView.getChildren()
+                .add(infoPlayer);
         if (player.isStoped()) {
             this.playerFullView.setStyle("-fx-border-color: red");
         } else {
             this.playerFullView.setStyle("-fx-border-color: black");
         }
-        this.playerFullView.getChildren().add(this.playerView);
+
+        this.playerFullView.getChildren()
+                .add(this.playerView);
 
     }
 

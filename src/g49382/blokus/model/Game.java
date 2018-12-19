@@ -167,7 +167,7 @@ public class Game extends Observable {
      */
     public void play(int numShape, int x, int y) {
         if (shapeChosen != null) {
-            if (this.currentPlayer.getNbShape() == 21) {
+            if (this.currentPlayer.getNbShape() == 22) {
                 if ((this.plate.isBorder(shapeChosen, x, y))) {
                     for (Bloc b : shapeChosen.getShape()) {
                         b.getP().setX(b.getP().getX() + x);
@@ -301,10 +301,10 @@ public class Game extends Observable {
                 cpt++;
                 int x = ((int) (19 * Math.random()));
                 int y = ((int) (19 * Math.random()));
-                int p = ((int) (21 * Math.random()));
+                int p = ((int) (22 * Math.random()));
                 this.shapeChosen = currentPlayer.getStock().getShapes().get(p - 1);
 
-                if (this.currentPlayer.getNbShape() == 21) {
+                if (this.currentPlayer.getNbShape() == 22) {
                     if ((this.plate.isBorder(shapeChosen, x, y))) {
                         for (Bloc b : shapeChosen.getShape()) {
                             b.getP().setX(b.getP().getX() + x);

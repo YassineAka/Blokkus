@@ -37,7 +37,8 @@ public class Deck {
                              new ShapeBlokus(Arrays.asList(new Bloc(),new Bloc(1,0),new Bloc(1,1),new Bloc(2,1),new Bloc(2,2))),//18
                              new ShapeBlokus(Arrays.asList(new Bloc(),new Bloc(0,1),new Bloc(1,1),new Bloc(2,1),new Bloc(2,2))),//19
                              new ShapeBlokus(Arrays.asList(new Bloc(),new Bloc(0,1),new Bloc(1,1),new Bloc(2,1),new Bloc(1,2))),//20
-                             new ShapeBlokus(Arrays.asList(new Bloc(1,0),new Bloc(0,1),new Bloc(1,1),new Bloc(1,2),new Bloc(2,1)))//21
+                             new ShapeBlokus(Arrays.asList(new Bloc(1,0),new Bloc(0,1),new Bloc(1,1),new Bloc(1,2),new Bloc(2,1))),//21
+                             new ShapeBlokus(Arrays.asList(new Bloc(),new Bloc(0,1),new Bloc(0,2),new Bloc(1,0),new Bloc(1,1),new Bloc(1,2)))//22
                             };
         for (ShapeBlokus s : allShapes) {
             s.setNumShape(this.nbShape+1);
