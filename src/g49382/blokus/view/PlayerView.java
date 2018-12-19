@@ -95,7 +95,7 @@ public class PlayerView implements Observer {
                 break;
             }
         }
-        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "      Score :     " + this.player.getScore());
+        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "     Score :     " + this.player.getScore()+"     ShapeRemaining :     "+ this.player.shapesRemaining());
         this.playerFullView.getChildren().add(infoPlayer);
         this.playerFullView.getChildren().add(this.playerView);
         this.playerFullView.setStyle("-fx-border-color: black");
@@ -129,7 +129,7 @@ public class PlayerView implements Observer {
                 break;
             }
         }
-        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "     Score :     " + this.player.getScore());
+        Text infoPlayer = new Text("Player " + this.player.getColor().getNumPlayer() + "     Score :     " + this.player.getScore()+"     ShapeRemaining :     "+ this.player.shapesRemaining());
 
         this.playerFullView.getChildren()
                 .add(infoPlayer);

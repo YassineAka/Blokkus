@@ -14,6 +14,7 @@ import java.util.List;
  * @author PaRaDoxe1070
  */
 public class Player {
+
     private Deck stock;
     private int nbShape;
     private Paint color;
@@ -22,6 +23,7 @@ public class Player {
 
     /**
      * Create a new Player with the color eceived in parameter.
+     *
      * @param color
      */
     public Player(Paint color) {
@@ -51,24 +53,23 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
-    
 
     public void setColor(Paint color) {
         this.color = color;
     }
-    
-    
 
     /**
      * Get the color of this player.
+     *
      * @return a Color.
      */
     public Paint getColor() {
         return color;
     }
-    
+
     /**
      * Get the stock of this player.
+     *
      * @return a Stock
      */
     public Deck getStock() {
@@ -77,37 +78,40 @@ public class Player {
 
     /**
      * Get the number of shapes in the stock of this player.
+     *
      * @return number of shapes remaining
      */
     public int getNbShape() {
         return nbShape;
     }
-    
+
     /**
-     * Set the number of shapes in the stock of this player to number received in parameter.
+     * Set the number of shapes in the stock of this player to number received
+     * in parameter.
      */
     public void setNbShape(int nbShape) {
         this.nbShape = nbShape;
     }
-    
-    public void addScore(ShapeBlokus shape){
+
+    public void addScore(ShapeBlokus shape) {
         this.score += shape.getShape().size();
     }
-    
-    
+
     /**
      * She choose the shape to place in the plate.
-     * @param  shape to place
+     *
+     * @param shape to place
      * @return the shape to place
      */
-    public ShapeBlokus place(int numShape){
-        ShapeBlokus shapechosen = this.stock.getShapes().get(numShape-1);
-        this.stock.getShapes().set(numShape-1, null);
+    public ShapeBlokus place(int numShape) {
+        ShapeBlokus shapechosen = this.stock.getShapes().get(numShape - 1);
+        this.stock.getShapes().set(numShape - 1, null);
         this.nbShape--;
         return shapechosen;
     }
-        public ShapeBlokus placeIa(int numShape){
-        ShapeBlokus shapechosen = this.stock.getShapes().get(numShape-1);
+
+    public ShapeBlokus placeIa(int numShape) {
+        ShapeBlokus shapechosen = this.stock.getShapes().get(numShape - 1);
 //        this.stock.getShapes().set(numShape-1, null);
 //        this.nbShape--;
         return shapechosen;
@@ -115,7 +119,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "The player " +color+"." ;
+        return "The player " + color + ".";
     }
 
     @Override
@@ -125,11 +129,11 @@ public class Player {
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof Player  && ((Player)obj).getColor() == this.color) {
+        if (obj instanceof Player && ((Player) obj).getColor() == this.color) {
             return true;
         }
         return false;
-        }
+    }
 
     public boolean isStoped() {
         return stoped;
@@ -138,10 +142,15 @@ public class Player {
     public void Stop() {
         this.stoped = true;
     }
-               
-        
-        
-    
-    
-    
+
+    public int shapesRemaining() {
+        int shaperemaining = 0;
+        for (ShapeBlokus shape : stock.getShapes()) {
+            if (shape != null) {
+                shaperemaining++;
+            }
+        }
+        return shaperemaining;
+    }
+
 }
